@@ -1,0 +1,130 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ServiceCardCompact from '../components/ServiceCardCompact.astro';
+
+// Get all services from content collection
+const allServices = await getCollection('services');
+
+// Sort by sortOrder
+const sortedServices = allServices.sort((a, b) =>
+  (a.data.sortOrder ?? 999) - (b.data.sortOrder ?? 999)
+);
+
+// Group services by category
+const grouped = sortedServices.reduce((acc, service) => {
+  const category = service.data.category;
+  if (!acc[category]) {
+    acc[category] = [];
+  }
+  acc[category].push(service);
+  return acc;
+}, {} as Record<string, typeof allServices>);
+
+// Define category display order and labels
+const categoryOrder = ['manicure', 'pedicure', 'additional'];
+const categoryLabels: Record<string, string> = {
+  manicure: 'Manicure',
+  pedicure: 'Pedicure',
+  additional: 'Additional Services',
+};
+---
+
+<BaseLayout
+  title="Services — Nails On Salon"
+  description="Premium manicure and pedicure services. Browse our full menu of services and pricing."
+>
+  <!-- HEADER -->
+  <section class="bg-bg-tint py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <h1 class="font-display font-light text-display-mobile sm:text-display-desktop text-ink">
+        Our Services
+      </h1>
+      <p class="text-body-large text-muted mt-md max-w-lg">
+        Premium nails care, customized to your preferences. All services feature hygienic practices and quality products.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICES BY CATEGORY -->
+  <div class="bg-white">
+    {categoryOrder.map((category) => {
+      const services = grouped[category];
+      if (!services) return null;
+
+      const isAdditional = category === 'additional';
+
+      return (
+        <section class="border-b border-border last:border-b-0">
+          <div class="px-5 sm:px-10 max-w-container-xl mx-auto py-lg sm:py-2xl">
+            <!-- Category heading -->
+            <h2 class="font-display font-semibold text-h2-mobile sm:text-h2-desktop text-ink mb-lg sm:mb-2xl">
+              {categoryLabels[category]}
+            </h2>
+
+            <!-- Services list -->
+            <div class="divide-y divide-border">
+              {isAdditional
+                ? // Additional services: compact layout
+                  services.map((service) => (
+                    <ServiceCardCompact
+                      title={service.data.title}
+                      price={service.data.price}
+                      priceMax={service.data.priceMax}
+                      duration={service.data.duration}
+                      includes={service.data.includes}
+                    />
+                  ))
+                : // Manicure & pedicure: full card layout
+                  services.map((service) => (
+                    <ServiceCard
+                      title={service.data.title}
+                      price={service.data.price}
+                      priceMax={service.data.priceMax}
+                      duration={service.data.duration}
+                      description={service.data.description}
+                      includes={service.data.includes}
+                      signature={service.data.signature}
+                    />
+                  ))}
+            </div>
+          </div>
+        </section>
+      );
+    })}
+  </div>
+
+  <!-- INFO SECTION -->
+  <section class="bg-bg-tint py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
+        <div>
+          <h3 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            How to Book
+          </h3>
+          <p class="text-body-base text-muted">
+            To schedule your appointment, please message us on Instagram. We'll confirm your preferred date, time, and service.
+          </p>
+          <a
+            href="https://www.instagram.com/nailsonsalon?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block mt-md px-lg py-md bg-brand text-ink font-medium rounded transition-opacity hover:opacity-90"
+          >
+            Message on Instagram
+          </a>
+        </div>
+
+        <div>
+          <h3 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            Payment & Timing
+          </h3>
+          <p class="text-body-base text-muted">
+            Payment accepted during your appointment. All services include a consultation to customize the look you want.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
