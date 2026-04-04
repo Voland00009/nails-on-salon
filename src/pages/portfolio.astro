@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import GalleryLightbox from '../components/GalleryLightbox.astro';
+import InstagramCTA from '../components/InstagramCTA.astro';
+
+// Import all 8 portfolio images in curation order
+import img1 from '../assets/work/IMG_3209.jpg';
+import img2 from '../assets/work/IMG_1043.JPG';
+import img3 from '../assets/work/IMG_3148.jpg';
+import img4 from '../assets/work/IMG_3206.jpg';
+import img5 from '../assets/work/IMG_4349.JPG';
+import img6 from '../assets/work/IMG_0013.jpg';
+import img7 from '../assets/work/IMG_3213.jpg';
+import img8 from '../assets/work/IMG_3221.jpg';
+
+// Portfolio images array in curation order
+const portfolioImages = [
+  { src: img1, alt: 'Almond-shaped nails with red lacquer on LV bag — premium signature' },
+  { src: img2, alt: 'Short nails with French ombré gradient design and neon studio backdrop' },
+  { src: img3, alt: 'Black lace nail art design showing detailed artistry' },
+  { src: img4, alt: 'Bold red classic manicure demonstrating color precision' },
+  { src: img5, alt: 'Short French ombré manicure showcasing technical perfection' },
+  { src: img6, alt: 'Christmas-themed nail design with festive green and gold accents' },
+  { src: img7, alt: 'Hot pink statement nails with gradient finish' },
+  { src: img8, alt: 'Hot pink nails from alternate angle showing shine and dimension' }
+];
+---
+
+<BaseLayout
+  title="Portfolio — Nails On Salon"
+  description="Gallery of nail art work by Tetiana. See manicures, pedicures, and custom designs."
+>
+  <!-- HEADER -->
+  <section class="bg-bg-tint py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <h1 class="font-display font-light text-display-mobile sm:text-display-desktop text-ink">
+        Portfolio
+      </h1>
+      <p class="text-body-large text-muted mt-md max-w-lg">
+        A selection of recent work showcasing clean lines, precision, and custom designs.
+      </p>
+    </div>
+  </section>
+
+  <!-- GALLERY GRID -->
+  <section class="bg-white py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <div id="gallery-grid">
+        <GalleryGrid images={portfolioImages} />
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX ISLAND (client:visible) -->
+  <GalleryLightbox images={portfolioImages} client:visible />
+
+  <!-- CTA SECTION -->
+  <section class="bg-bg-tint py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <div class="max-w-xl mx-auto text-center">
+        <h2 class="font-display font-light text-h2-mobile sm:text-h2-desktop text-ink mb-md">
+          Love what you see?
+        </h2>
+        <p class="text-body-large text-muted mb-2xl">
+          Let's create your perfect nails. Book your appointment through Instagram DM — we'll confirm your preferred date, time, and design.
+        </p>
+        <InstagramCTA variant="primary" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
