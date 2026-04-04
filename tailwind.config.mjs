@@ -59,6 +59,9 @@ export default {
       borderWidth: {
         'l-2': '0 0 0 2px',
       },
+      scale: {
+        103: '1.03',
+      },
     },
   },
   plugins: [],
