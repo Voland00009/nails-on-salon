@@ -11,7 +11,6 @@
   "dependencies": {
     "astro": "^6.1.0",
     "@astrojs/tailwind": "^6.0.0",
-    "@astrojs/sitemap": "^4.0.0",
     "tailwindcss": "^3.4.0",
     "sharp": "^0.33.0"
   }
