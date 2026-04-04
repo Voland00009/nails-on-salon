@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+
+interface ImageItem {
+  src: any;
+  alt: string;
+  index: number;
+}
+
+interface Props {
+  images: ImageItem[];
+  onImageClick?: (index: number) => void;
+}
+
+const { images, onImageClick } = Astro.props;
+---
+
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-2 lg:gap-3">
+  {images.map((image) => (
+    <button
+      class="relative w-full aspect-video overflow-hidden rounded hover:scale-103 transition-transform duration-400 ease-custom-bezier cursor-zoom-in"
+      style="aspect-ratio: 4 / 5;"
+      onclick={onImageClick ? `window.galleryLightbox?.openImage(${image.index})` : undefined}
+      aria-label={`${image.alt} — Click to view full size`}
+    >
+      <Image
+        src={image.src}
+        alt={image.alt}
+        widths={[300, 400, 500, 600]}
+        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+        quality={75}
+        loading="lazy"
+        class="w-full h-full object-cover"
+      />
+    </button>
+  ))}
+</div>
+
+<style>
+  @media (hover: hover) {
+    button:hover {
+      transform: scale(1.03);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    button {
+      transition: none !important;
+    }
+  }
+</style>
