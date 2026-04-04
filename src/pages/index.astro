@@ -1,16 +1,58 @@
 ---
+import { Image } from 'astro:assets';
+import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import InstagramCTA from '../components/InstagramCTA.astro';
+import heroImage from '../assets/hero/IMG_3260.JPG';
 
+const heroContent = await getEntry('site', 'hero');
+const { Content: HeroText } = await heroContent.render();
 ---
-
 <BaseLayout
   title="Nails On Salon — Premium Nail Studio in National City, CA"
-  description="Private nail studio specializing in clean, natural-looking manicures and dry pedicures. Book via Instagram DM."
+  description="Private nail studio specializing in clean, natural-looking manicures and dry pedicures. Located in National City, CA. Book via Instagram DM."
 >
-  <section class="py-4xl px-5 text-center">
-    <h1 class="font-display text-display-mobile lg:text-display-desktop font-light">
-      Coming Soon
-    </h1>
-    <p class="text-muted mt-lg">Site under construction</p>
+  <!-- HERO -->
+  <section class="bg-white">
+    <!-- Mobile: photo on top, text below -->
+    <!-- Desktop: text 40% left, photo 60% right -->
+    <div class="flex flex-col lg:flex-row lg:items-center lg:min-h-[80vh]">
+
+      <!-- Photo (mobile: first, desktop: second via order) -->
+      <div class="lg:order-2 lg:w-[60%] overflow-hidden">
+        <Image
+          src={heroImage}
+          alt="Tetiana in her private nail studio with pink 'Hello Gorgeous' neon sign"
+          widths={[640, 768, 1024, 1280, 1536]}
+          sizes="(min-width: 1280px) 672px, (min-width: 1024px) 576px, 100vw"
+          quality={80}
+          loading="eager"
+          fetchpriority="high"
+          class="w-full h-[70vh] lg:h-full object-cover object-center animate-hero-fade"
+        />
+      </div>
+
+      <!-- Text -->
+      <div class="lg:order-1 lg:w-[40%] px-5 sm:px-10 lg:pr-10 lg:pl-0 py-xl lg:py-5xl">
+        <div class="mx-auto max-w-container-lg lg:mx-0 lg:ml-auto lg:max-w-[480px] lg:pr-10">
+          <!-- Decorative line -->
+          <div class="w-[60px] h-[2px] bg-brand mb-lg animate-hero-text" aria-hidden="true"></div>
+
+          <h1 class="font-display font-light text-display-mobile lg:text-display-desktop text-ink animate-hero-text" style="animation-delay: 0.1s">
+            Clean Nails.<br />Gentle Touch.
+          </h1>
+
+          <div class="mt-md max-w-[400px] text-ink leading-relaxed animate-hero-text" style="animation-delay: 0.15s">
+            <HeroText />
+          </div>
+
+          <div class="mt-xl animate-hero-text" style="animation-delay: 0.2s">
+            <InstagramCTA variant="primary" />
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <!-- Placeholder for next sections (Tasks 6+) -->
 </BaseLayout>
