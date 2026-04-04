@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  price: number;
+  priceMax?: number;
+  duration?: string;
+  includes?: string;
+}
+
+const { title, price, priceMax, duration, includes } = Astro.props;
+const priceDisplay = priceMax ? `$${price}–${priceMax}` : `$${price}`;
+const priceAndDuration = duration ? `${priceDisplay} · ${duration}` : priceDisplay;
+---
+
+<div class="flex flex-col sm:flex-row sm:justify-between py-md border-b border-border">
+  <span class="text-ink">
+    {title}
+    {includes && <span class="text-muted text-sm"> ({includes})</span>}
+  </span>
+  <span class="font-medium text-ink text-sm sm:text-base flex-shrink-0 mt-1 sm:mt-0">
+    {priceAndDuration}
+  </span>
+</div>
