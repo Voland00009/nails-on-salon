@@ -40,6 +40,9 @@ export default {
         'body-small': ['0.875rem', { lineHeight: '1.5', letterSpacing: '0.01em' }],
         'ui': ['0.875rem', { lineHeight: '1', letterSpacing: '0.06em' }],
         'ui-desktop': ['0.9375rem', { lineHeight: '1', letterSpacing: '0.06em' }],
+        'label': ['0.6875rem', { lineHeight: '1', letterSpacing: '0.08em' }],
+        'micro': ['0.8125rem', { lineHeight: '1.5' }],
+        'ui-medium': ['0.9375rem', { lineHeight: '1.5' }],
       },
       maxWidth: {
         'container-sm': '960px',
@@ -47,6 +50,10 @@ export default {
       },
       borderRadius: {
         'pill': '9999px',
+      },
+      boxShadow: {
+        'brand-sm': '0 2px 6px rgba(28,16,24,0.08)',
+        'brand-lg': '0 4px 12px rgba(28,16,24,0.1)',
       },
     },
   },

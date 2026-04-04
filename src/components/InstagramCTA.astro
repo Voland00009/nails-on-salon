@@ -17,8 +17,8 @@ const isPrimary = variant === 'primary';
     class:list={[
       'inline-flex items-center justify-center gap-2 font-body font-medium rounded-pill bg-brand text-ink transition-all duration-200',
       isPrimary
-        ? 'px-8 py-4 text-[15px] tracking-[0.03em] min-h-[48px] w-full sm:w-auto hover:bg-brand-hover hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(28,16,24,0.1)] active:translate-y-0 active:shadow-[0_2px_6px_rgba(28,16,24,0.08)]'
-        : 'px-6 py-3 text-sm w-full sm:w-auto hover:bg-brand-hover hover:-translate-y-px hover:shadow-[0_4px_12px_rgba(28,16,24,0.1)] active:translate-y-0',
+        ? 'px-8 py-4 text-ui-medium tracking-[0.03em] min-h-[48px] w-full sm:w-auto hover:bg-brand-hover hover:-translate-y-px hover:shadow-brand-lg active:translate-y-0 active:shadow-brand-sm'
+        : 'px-6 py-3 text-sm w-full sm:w-auto hover:bg-brand-hover hover:-translate-y-px hover:shadow-brand-lg active:translate-y-0',
     ]}
   >
     {isPrimary && (
@@ -30,6 +30,6 @@ const isPrimary = variant === 'primary';
   </a>
 
   {hint && (
-    <p class="text-muted text-[13px] mt-3 text-center">{hint}</p>
+    <p class="text-muted text-micro mt-3 text-center">{hint}</p>
   )}
 </div>
