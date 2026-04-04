@@ -238,3 +238,233 @@ const { images } = Astro.props;
     }
   }
 </style>
+
+<script define:vars={{ imageUrls: images.map((img, idx) => ({ src: img.src, alt: img.alt, idx })) }}>
+  class GalleryLightbox {
+    constructor(imageData) {
+      this.images = imageData;
+      this.currentIndex = 0;
+      this.isOpen = false;
+      this.isSwiping = false;
+      this.swipeStartX = 0;
+      this.swipeStartY = 0;
+      this.swipeOffsetX = 0;
+
+      // Cache DOM elements
+      this.dialog = document.getElementById('lightbox-dialog');
+      this.imageEl = document.getElementById('lightbox-image');
+      this.prevBtn = document.getElementById('lightbox-prev');
+      this.nextBtn = document.getElementById('lightbox-next');
+      this.closeBtn = document.getElementById('lightbox-close');
+      this.currentCounter = document.getElementById('lightbox-current');
+      this.totalCounter = document.getElementById('lightbox-total');
+      this.lastFocusedElement = null;
+
+      this.setupEventListeners();
+      this.setupGridButtons();
+    }
+
+    setupEventListeners() {
+      // Button click handlers
+      this.prevBtn.addEventListener('click', () => this.previousImage());
+      this.nextBtn.addEventListener('click', () => this.nextImage());
+      this.closeBtn.addEventListener('click', () => this.closeModal());
+
+      // Dialog cancel (ESC key or other close triggers)
+      this.dialog.addEventListener('cancel', () => this.closeModal());
+
+      // Keyboard navigation (global, only when dialog is open)
+      document.addEventListener('keydown', (e) => this.handleKeyboard(e));
+
+      // Touch/swipe events on image
+      this.imageEl.addEventListener('touchstart', (e) => this.handleTouchStart(e));
+      this.imageEl.addEventListener('touchmove', (e) => this.handleTouchMove(e));
+      this.imageEl.addEventListener('touchend', (e) => this.handleTouchEnd(e));
+
+      // Focus trap (Tab within dialog)
+      this.dialog.addEventListener('keydown', (e) => this.handleFocusTrap(e));
+    }
+
+    setupGridButtons() {
+      // Attach click handlers to gallery grid image buttons
+      // These will be created by GalleryGrid component
+      const gridButtons = document.querySelectorAll('#gallery-grid button');
+      gridButtons.forEach((btn, idx) => {
+        btn.addEventListener('click', () => this.openImage(idx));
+      });
+    }
+
+    openImage(index) {
+      if (index < 0 || index >= this.images.length) return;
+
+      this.currentIndex = index;
+      this.lastFocusedElement = document.activeElement;
+
+      // Load and display image
+      this.loadImage(this.currentIndex);
+
+      // Show dialog
+      this.dialog.showModal();
+      this.isOpen = true;
+      document.body.style.overflow = 'hidden';
+
+      // Focus close button for accessibility
+      setTimeout(() => this.closeBtn.focus(), 0);
+
+      // Preload adjacent images
+      this.preloadAdjacentImages();
+    }
+
+    closeModal() {
+      if (!this.isOpen) return;
+
+      this.dialog.close();
+      this.isOpen = false;
+      document.body.style.overflow = '';
+
+      // Return focus to element that opened lightbox
+      if (this.lastFocusedElement) {
+        setTimeout(() => this.lastFocusedElement.focus(), 0);
+      }
+    }
+
+    loadImage(index) {
+      if (index < 0 || index >= this.images.length) return;
+
+      this.currentIndex = index;
+      const image = this.images[index];
+
+      // Handle Astro image import objects
+      const imageUrl = typeof image.src === 'object' ? image.src.src : image.src;
+
+      this.imageEl.src = imageUrl;
+      this.imageEl.alt = image.alt;
+      this.currentCounter.textContent = index + 1;
+    }
+
+    nextImage() {
+      const nextIndex = (this.currentIndex + 1) % this.images.length;
+      this.loadImage(nextIndex);
+      this.preloadAdjacentImages();
+    }
+
+    previousImage() {
+      const prevIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+      this.loadImage(prevIndex);
+      this.preloadAdjacentImages();
+    }
+
+    preloadAdjacentImages() {
+      const prev = (this.currentIndex - 1 + this.images.length) % this.images.length;
+      const next = (this.currentIndex + 1) % this.images.length;
+
+      const prevUrl = typeof this.images[prev].src === 'object'
+        ? this.images[prev].src.src
+        : this.images[prev].src;
+      const nextUrl = typeof this.images[next].src === 'object'
+        ? this.images[next].src.src
+        : this.images[next].src;
+
+      // Preload by creating image objects (browser cache)
+      new Image().src = prevUrl;
+      new Image().src = nextUrl;
+    }
+
+    handleKeyboard(e) {
+      if (!this.isOpen) return;
+
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        this.previousImage();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        this.nextImage();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        this.closeModal();
+      }
+    }
+
+    handleFocusTrap(e) {
+      if (e.key !== 'Tab') return;
+
+      // Cycle focus through: close → prev → next
+      const focusableElements = [
+        this.closeBtn,
+        this.prevBtn,
+        this.nextBtn
+      ];
+
+      const currentIndex = focusableElements.indexOf(document.activeElement);
+      let nextIndex;
+
+      if (e.shiftKey) {
+        // Shift+Tab: backwards
+        nextIndex = currentIndex - 1 < 0 ? focusableElements.length - 1 : currentIndex - 1;
+      } else {
+        // Tab: forwards
+        nextIndex = currentIndex + 1 >= focusableElements.length ? 0 : currentIndex + 1;
+      }
+
+      e.preventDefault();
+      focusableElements[nextIndex].focus();
+    }
+
+    handleTouchStart(e) {
+      if (e.touches.length !== 1) return;
+
+      this.isSwiping = true;
+      this.swipeStartX = e.touches[0].clientX;
+      this.swipeStartY = e.touches[0].clientY;
+      this.swipeOffsetX = 0;
+    }
+
+    handleTouchMove(e) {
+      if (!this.isSwiping || e.touches.length !== 1) return;
+
+      this.swipeOffsetX = e.touches[0].clientX - this.swipeStartX;
+
+      // Detect if swipe is horizontal (prevent vertical scroll)
+      const yDiff = Math.abs(e.touches[0].clientY - this.swipeStartY);
+      const xDiff = Math.abs(this.swipeOffsetX);
+
+      if (xDiff > yDiff) {
+        e.preventDefault();
+      }
+    }
+
+    handleTouchEnd(e) {
+      if (!this.isSwiping) return;
+
+      this.isSwiping = false;
+      const threshold = 50;
+
+      // Swipe left (negative X) = next image
+      if (this.swipeOffsetX < -threshold) {
+        this.nextImage();
+      }
+      // Swipe right (positive X) = previous image
+      else if (this.swipeOffsetX > threshold) {
+        this.previousImage();
+      }
+
+      this.swipeOffsetX = 0;
+    }
+  }
+
+  // Initialize when DOM is ready
+  function initGalleryLightbox() {
+    const imageData = imageUrls; // From define:vars
+    const lightbox = new GalleryLightbox(imageData);
+
+    // Expose to global scope so GalleryGrid can call it
+    window.galleryLightbox = lightbox;
+  }
+
+  // Run initialization
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGalleryLightbox);
+  } else {
+    initGalleryLightbox();
+  }
+</script>
