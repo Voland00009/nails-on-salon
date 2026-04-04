@@ -241,6 +241,9 @@ const { images } = Astro.props;
 
 <script define:vars={{ imageUrls: images.map((img, idx) => ({ src: img.src, alt: img.alt, idx })) }}>
   class GalleryLightbox {
+    // Constants
+    static SWIPE_THRESHOLD = 50;
+
     constructor(imageData) {
       this.images = imageData;
       this.currentIndex = 0;
@@ -260,8 +263,24 @@ const { images } = Astro.props;
       this.totalCounter = document.getElementById('lightbox-total');
       this.lastFocusedElement = null;
 
+      // Safety check: ensure all elements exist
+      if (!this.dialog || !this.imageEl || !this.prevBtn || !this.nextBtn || !this.closeBtn) {
+        console.error('GalleryLightbox: Required DOM elements not found');
+        return;
+      }
+
+      // Store bound function references for cleanup
+      this.handleKeyboardBound = (e) => this.handleKeyboard(e);
+      this.handleTouchStartBound = (e) => this.handleTouchStart(e);
+      this.handleTouchMoveBound = (e) => this.handleTouchMove(e);
+      this.handleTouchEndBound = (e) => this.handleTouchEnd(e);
+      this.handleFocusTrapBound = (e) => this.handleFocusTrap(e);
+
       this.setupEventListeners();
       this.setupGridButtons();
+
+      // Cleanup on component unmount
+      this.setupCleanup();
     }
 
     setupEventListeners() {
@@ -270,28 +289,81 @@ const { images } = Astro.props;
       this.nextBtn.addEventListener('click', () => this.nextImage());
       this.closeBtn.addEventListener('click', () => this.closeModal());
 
-      // Dialog cancel (ESC key or other close triggers)
+      // Dialog cancel
       this.dialog.addEventListener('cancel', () => this.closeModal());
 
-      // Keyboard navigation (global, only when dialog is open)
-      document.addEventListener('keydown', (e) => this.handleKeyboard(e));
+      // Keyboard navigation (using bound reference for cleanup)
+      document.addEventListener('keydown', this.handleKeyboardBound);
 
-      // Touch/swipe events on image
-      this.imageEl.addEventListener('touchstart', (e) => this.handleTouchStart(e));
-      this.imageEl.addEventListener('touchmove', (e) => this.handleTouchMove(e));
-      this.imageEl.addEventListener('touchend', (e) => this.handleTouchEnd(e));
+      // Touch/swipe events
+      this.imageEl.addEventListener('touchstart', this.handleTouchStartBound);
+      this.imageEl.addEventListener('touchmove', this.handleTouchMoveBound);
+      this.imageEl.addEventListener('touchend', this.handleTouchEndBound);
 
-      // Focus trap (Tab within dialog)
-      this.dialog.addEventListener('keydown', (e) => this.handleFocusTrap(e));
+      // Focus trap
+      this.dialog.addEventListener('keydown', this.handleFocusTrapBound);
     }
 
     setupGridButtons() {
-      // Attach click handlers to gallery grid image buttons
-      // These will be created by GalleryGrid component
+      // Only attach once: check if already initialized
+      if (this.gridButtonsInitialized) return;
+
       const gridButtons = document.querySelectorAll('#gallery-grid button');
+
+      // Safety check
+      if (!gridButtons || gridButtons.length === 0) {
+        console.warn('GalleryLightbox: Gallery grid not found');
+        return;
+      }
+
+      // Store bound handlers for cleanup
+      this.gridButtonHandlers = [];
       gridButtons.forEach((btn, idx) => {
-        btn.addEventListener('click', () => this.openImage(idx));
+        const handler = () => this.openImage(idx);
+        this.gridButtonHandlers.push({ btn, handler });
+        btn.addEventListener('click', handler);
       });
+
+      this.gridButtonsInitialized = true;
+    }
+
+    setupCleanup() {
+      // Use Astro lifecycle if available, or handle manually
+      const cleanup = () => {
+        this.cleanup();
+      };
+
+      // Cleanup on page unload
+      window.addEventListener('beforeunload', cleanup);
+
+      // Store cleanup for potential manual trigger
+      this._cleanup = cleanup;
+    }
+
+    cleanup() {
+      // Remove document-level listeners
+      document.removeEventListener('keydown', this.handleKeyboardBound);
+      this.imageEl.removeEventListener('touchstart', this.handleTouchStartBound);
+      this.imageEl.removeEventListener('touchmove', this.handleTouchMoveBound);
+      this.imageEl.removeEventListener('touchend', this.handleTouchEndBound);
+      this.dialog.removeEventListener('keydown', this.handleFocusTrapBound);
+
+      // Remove grid button listeners
+      if (this.gridButtonHandlers) {
+        this.gridButtonHandlers.forEach(({ btn, handler }) => {
+          btn.removeEventListener('click', handler);
+        });
+        this.gridButtonHandlers = [];
+      }
+
+      // Close dialog if open
+      if (this.isOpen) {
+        this.dialog.close();
+        this.isOpen = false;
+        document.body.style.overflow = '';
+      }
+
+      this.gridButtonsInitialized = false;
     }
 
     openImage(index) {
@@ -300,7 +372,7 @@ const { images } = Astro.props;
       this.currentIndex = index;
       this.lastFocusedElement = document.activeElement;
 
-      // Load and display image
+      // Load image
       this.loadImage(this.currentIndex);
 
       // Show dialog
@@ -308,10 +380,10 @@ const { images } = Astro.props;
       this.isOpen = true;
       document.body.style.overflow = 'hidden';
 
-      // Focus close button for accessibility
+      // Focus close button
       setTimeout(() => this.closeBtn.focus(), 0);
 
-      // Preload adjacent images
+      // Preload adjacent
       this.preloadAdjacentImages();
     }
 
@@ -322,7 +394,7 @@ const { images } = Astro.props;
       this.isOpen = false;
       document.body.style.overflow = '';
 
-      // Return focus to element that opened lightbox
+      // Return focus
       if (this.lastFocusedElement) {
         setTimeout(() => this.lastFocusedElement.focus(), 0);
       }
@@ -334,7 +406,7 @@ const { images } = Astro.props;
       this.currentIndex = index;
       const image = this.images[index];
 
-      // Handle Astro image import objects
+      // Handle Astro image objects
       const imageUrl = typeof image.src === 'object' ? image.src.src : image.src;
 
       this.imageEl.src = imageUrl;
@@ -365,7 +437,7 @@ const { images } = Astro.props;
         ? this.images[next].src.src
         : this.images[next].src;
 
-      // Preload by creating image objects (browser cache)
+      // Preload via browser cache
       new Image().src = prevUrl;
       new Image().src = nextUrl;
     }
@@ -388,7 +460,6 @@ const { images } = Astro.props;
     handleFocusTrap(e) {
       if (e.key !== 'Tab') return;
 
-      // Cycle focus through: close → prev → next
       const focusableElements = [
         this.closeBtn,
         this.prevBtn,
@@ -399,10 +470,8 @@ const { images } = Astro.props;
       let nextIndex;
 
       if (e.shiftKey) {
-        // Shift+Tab: backwards
         nextIndex = currentIndex - 1 < 0 ? focusableElements.length - 1 : currentIndex - 1;
       } else {
-        // Tab: forwards
         nextIndex = currentIndex + 1 >= focusableElements.length ? 0 : currentIndex + 1;
       }
 
@@ -424,7 +493,6 @@ const { images } = Astro.props;
 
       this.swipeOffsetX = e.touches[0].clientX - this.swipeStartX;
 
-      // Detect if swipe is horizontal (prevent vertical scroll)
       const yDiff = Math.abs(e.touches[0].clientY - this.swipeStartY);
       const xDiff = Math.abs(this.swipeOffsetX);
 
@@ -437,14 +505,13 @@ const { images } = Astro.props;
       if (!this.isSwiping) return;
 
       this.isSwiping = false;
-      const threshold = 50;
 
-      // Swipe left (negative X) = next image
-      if (this.swipeOffsetX < -threshold) {
+      // Swipe left = next
+      if (this.swipeOffsetX < -GalleryLightbox.SWIPE_THRESHOLD) {
         this.nextImage();
       }
-      // Swipe right (positive X) = previous image
-      else if (this.swipeOffsetX > threshold) {
+      // Swipe right = previous
+      else if (this.swipeOffsetX > GalleryLightbox.SWIPE_THRESHOLD) {
         this.previousImage();
       }
 
@@ -452,12 +519,15 @@ const { images } = Astro.props;
     }
   }
 
-  // Initialize when DOM is ready
-  function initGalleryLightbox() {
-    const imageData = imageUrls; // From define:vars
-    const lightbox = new GalleryLightbox(imageData);
+  // Initialize once per component
+  let lightbox = null;
 
-    // Expose to global scope so GalleryGrid can call it
+  function initGalleryLightbox() {
+    // Prevent double initialization
+    if (lightbox) return;
+
+    const imageData = imageUrls;
+    lightbox = new GalleryLightbox(imageData);
     window.galleryLightbox = lightbox;
   }
 
