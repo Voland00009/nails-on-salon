@@ -1,0 +1,179 @@
+---
+import { Image } from 'astro:assets';
+import logoBlack from '../assets/logos/logo_black.png';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/book', label: 'Book' },
+];
+
+function isActive(href: string, current: string): boolean {
+  if (href === '/') return current === '/';
+  return current.startsWith(href);
+}
+---
+
+<header class="sticky top-0 z-50 min-h-[72px] lg:min-h-[72px] bg-white/95 backdrop-blur-sm border-b border-border">
+  <div class="mx-auto max-w-container-lg px-5 sm:px-10 h-16 lg:h-[72px] flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" aria-label="Nails On Salon — Home">
+      <Image
+        src={logoBlack}
+        alt="Nails On Salon"
+        height={32}
+        class="h-8 lg:h-10 w-auto"
+        loading="eager"
+      />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav aria-label="Main navigation" class="hidden lg:flex items-center gap-8">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={[
+            'font-body font-medium text-ui uppercase text-ink transition-colors duration-200',
+            link.label === 'Book'
+              ? 'bg-brand text-ink px-5 py-2 rounded-pill hover:bg-[#FFB3C6]'
+              : 'relative hover:text-ink group',
+            isActive(link.href, currentPath) && link.label !== 'Book'
+              ? 'underline decoration-brand decoration-2 underline-offset-4'
+              : '',
+          ]}
+          {...(isActive(link.href, currentPath) ? { 'aria-current': 'page' } : {})}
+        >
+          {link.label}
+          {link.label !== 'Book' && !isActive(link.href, currentPath) && (
+            <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-brand transition-all duration-300 ease-out group-hover:w-full" />
+          )}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      class="lg:hidden flex flex-col justify-center items-end gap-[5px] w-12 h-12"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="block h-0.5 w-[22px] bg-ink transition-transform duration-300" id="hamburger-top"></span>
+      <span class="block h-0.5 w-[22px] bg-ink transition-opacity duration-300" id="hamburger-mid"></span>
+      <span class="block h-0.5 w-[16px] bg-ink transition-transform duration-300" id="hamburger-bot"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-40 hidden lg:hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Navigation menu"
+  >
+    <!-- Backdrop -->
+    <div id="mobile-menu-backdrop" class="absolute inset-0 bg-ink/30"></div>
+
+    <!-- Panel -->
+    <div
+      id="mobile-menu-panel"
+      class="absolute right-0 top-0 h-full w-full bg-white flex flex-col items-center justify-center translate-x-full transition-transform duration-300 ease-out"
+    >
+      <!-- Close button -->
+      <button
+        id="mobile-menu-close"
+        type="button"
+        class="absolute top-4 right-5 w-12 h-12 flex items-center justify-center"
+        aria-label="Close menu"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+      <nav aria-label="Mobile navigation" class="flex flex-col items-center gap-8">
+        {navLinks.map((link, i) => (
+          <a
+            href={link.href}
+            class:list={[
+              'font-body font-medium text-xl text-ink mobile-nav-link',
+              link.label === 'Book'
+                ? 'bg-brand px-8 py-3 rounded-pill mt-4'
+                : '',
+              isActive(link.href, currentPath) ? 'underline decoration-brand decoration-2 underline-offset-4' : '',
+            ]}
+            style={`transition-delay: ${i * 50}ms`}
+            {...(isActive(link.href, currentPath) ? { 'aria-current': 'page' } : {})}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const panel = document.getElementById('mobile-menu-panel');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  const closeBtn = document.getElementById('mobile-menu-close');
+
+  function openMenu() {
+    menu?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      panel?.classList.remove('translate-x-full');
+      panel?.classList.add('translate-x-0');
+    });
+    toggle?.setAttribute('aria-expanded', 'true');
+    closeBtn?.focus();
+  }
+
+  function closeMenu() {
+    panel?.classList.remove('translate-x-0');
+    panel?.classList.add('translate-x-full');
+    document.body.style.overflow = '';
+    toggle?.setAttribute('aria-expanded', 'false');
+    setTimeout(() => menu?.classList.add('hidden'), 300);
+    toggle?.focus();
+  }
+
+  toggle?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  backdrop?.addEventListener('click', closeMenu);
+
+  // Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu?.classList.contains('hidden')) {
+      closeMenu();
+    }
+  });
+
+  // Focus trap inside mobile menu
+  menu?.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const focusable = menu.querySelectorAll<HTMLElement>('a, button');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last?.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first?.focus();
+    }
+  });
+</script>
