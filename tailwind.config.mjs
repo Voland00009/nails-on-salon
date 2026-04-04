@@ -47,6 +47,7 @@ export default {
       maxWidth: {
         'container-sm': '960px',
         'container-lg': '1120px',
+        'container-xl': '1280px',
       },
       borderRadius: {
         'pill': '9999px',
