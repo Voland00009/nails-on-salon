@@ -3,7 +3,10 @@ import { Image } from 'astro:assets';
 import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import InstagramCTA from '../components/InstagramCTA.astro';
+import GalleryStrip from '../components/GalleryStrip.astro';
+import GoogleMap from '../components/GoogleMap.astro';
 import heroImage from '../assets/hero/IMG_3260.JPG';
+import studioImage from '../assets/salon/IMG_9975.jpg';
 
 const heroContent = await getEntry('site', 'hero');
 const { Content: HeroText } = await heroContent.render();
@@ -54,5 +57,126 @@ const { Content: HeroText } = await heroContent.render();
     </div>
   </section>
 
-  <!-- Placeholder for next sections (Tasks 6+) -->
+  <!-- SERVICES TEASER -->
+  <section class="bg-bg-tint py-3xl lg:py-5xl">
+    <div class="max-w-container-xl mx-auto px-5 sm:px-10">
+      <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink mb-2xl">
+        Featured Services
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg">
+        <!-- Card 1: Manicure -->
+        <a href="/services#manicure" class="group">
+          <div class="p-lg border-2 border-brand rounded-lg bg-white transition-all duration-200 hover:shadow-lg hover:-translate-y-px h-full flex flex-col">
+            <h3 class="font-display font-semibold text-h3-mobile lg:text-h3-desktop text-ink">
+              Manicure
+            </h3>
+            <p class="text-brand font-medium mt-1">$45–$65</p>
+            <p class="text-muted text-sm mt-1">30–45 min</p>
+            <p class="text-muted text-body-small mt-md flex-grow">
+              Clean, natural-looking manicures with premium polish and care.
+            </p>
+          </div>
+        </a>
+
+        <!-- Card 2: Pedicure -->
+        <a href="/services#pedicure" class="group">
+          <div class="p-lg border-2 border-brand rounded-lg bg-white transition-all duration-200 hover:shadow-lg hover:-translate-y-px h-full flex flex-col">
+            <h3 class="font-display font-semibold text-h3-mobile lg:text-h3-desktop text-ink">
+              Pedicure
+            </h3>
+            <p class="text-brand font-medium mt-1">$55–$75</p>
+            <p class="text-muted text-sm mt-1">45–60 min</p>
+            <p class="text-muted text-body-small mt-md flex-grow">
+              Dry pedicures with gentle foot care and relaxation.
+            </p>
+          </div>
+        </a>
+
+        <!-- Card 3: Nail Art -->
+        <a href="/services#nail-art" class="group">
+          <div class="p-lg border-2 border-border rounded-lg bg-white transition-all duration-200 hover:shadow-lg hover:-translate-y-px h-full flex flex-col">
+            <h3 class="font-display font-semibold text-h3-mobile lg:text-h3-desktop text-ink">
+              Nail Art & Design
+            </h3>
+            <p class="text-ink font-medium mt-1">Custom Pricing</p>
+            <p class="text-muted text-sm mt-1">Varies</p>
+            <p class="text-muted text-body-small mt-md flex-grow">
+              Custom designs and special nail art commissions.
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div class="text-center mt-2xl">
+        <a
+          href="/services"
+          class="inline-flex items-center justify-center gap-2 font-body font-medium rounded-pill bg-brand text-ink transition-all duration-200 px-8 py-4 text-ui-medium tracking-[0.03em] min-h-[48px] hover:bg-brand-hover hover:-translate-y-px active:translate-y-0"
+        >
+          View All Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY STRIP -->
+  <section class="bg-white py-3xl lg:py-5xl">
+    <div class="max-w-container-xl mx-auto px-5 sm:px-10">
+      <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink mb-2xl">
+        Our Work
+      </h2>
+
+      <GalleryStrip />
+    </div>
+  </section>
+
+  <!-- STUDIO & LOCATION -->
+  <section class="bg-bg-tint py-3xl lg:py-5xl">
+    <div class="max-w-container-xl mx-auto px-5 sm:px-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-2xl items-center">
+        <!-- Photo -->
+        <div class="order-2 lg:order-1 rounded-lg overflow-hidden">
+          <Image
+            src={studioImage}
+            alt="Nails On Salon private studio interior with modern design"
+            widths={[640, 768, 1024]}
+            sizes="(min-width: 1280px) 560px, (min-width: 1024px) 400px, 100vw"
+            quality={80}
+            loading="lazy"
+            class="w-full h-[300px] lg:h-[500px] object-cover"
+          />
+        </div>
+
+        <!-- Text + Map -->
+        <div class="order-1 lg:order-2 flex flex-col gap-lg">
+          <div>
+            <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink">
+              Private Studio
+            </h2>
+            <p class="text-muted text-body-small mt-md leading-relaxed">
+              Located in the heart of National City, our private studio is designed for personalized care and attention. We focus on clean techniques and natural-looking results in a welcoming environment.
+            </p>
+          </div>
+
+          <!-- Location Info -->
+          <div class="pt-md border-t border-border">
+            <p class="font-body font-medium text-ink mb-1">📍 National City, CA</p>
+            <p class="text-muted text-body-small">
+              3030 Plaza Bonita Rd<br />
+              Unit 1336, Suite 117<br />
+              National City, CA 91950
+            </p>
+          </div>
+
+          <!-- Map -->
+          <div class="h-[300px] rounded-lg overflow-hidden border border-border">
+            <GoogleMap />
+          </div>
+
+          <!-- CTA -->
+          <InstagramCTA variant="secondary" hint="Available for walk-ins and appointments" />
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

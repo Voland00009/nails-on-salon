@@ -81,3 +81,21 @@
 .animate-hero-text {
   animation: heroTextSlide 0.4s ease-out both;
 }
+
+/* Scroll snap utilities */
+.scroll-snap-x-mandatory {
+  scroll-snap-type: x mandatory;
+}
+
+.scroll-snap-start {
+  scroll-snap-align: start;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
