@@ -1,0 +1,257 @@
+---
+interface ImageItem {
+  src: any;
+  alt: string;
+}
+
+interface Props {
+  images: ImageItem[];
+}
+
+const { images } = Astro.props;
+---
+
+<div id="gallery-lightbox">
+  <dialog
+    id="lightbox-dialog"
+    class="lightbox-dialog"
+    aria-label="Full-size photo viewer"
+  >
+    <!-- Main content -->
+    <div class="lightbox-content">
+      <!-- Image -->
+      <img
+        id="lightbox-image"
+        src=""
+        alt=""
+        class="lightbox-image"
+        loading="eager"
+      />
+
+      <!-- Navigation: Previous button -->
+      <button
+        id="lightbox-prev"
+        class="lightbox-nav lightbox-nav--prev"
+        aria-label="Previous image"
+        type="button"
+      >
+        <svg class="lightbox-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Navigation: Next button -->
+      <button
+        id="lightbox-next"
+        class="lightbox-nav lightbox-nav--next"
+        aria-label="Next image"
+        type="button"
+      >
+        <svg class="lightbox-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Close button -->
+      <button
+        id="lightbox-close"
+        class="lightbox-close"
+        aria-label="Close photo viewer"
+        type="button"
+      >
+        <svg class="lightbox-close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Counter -->
+      <div class="lightbox-counter" id="lightbox-counter" aria-live="polite" aria-atomic="true">
+        <span id="lightbox-current">1</span>
+        <span>/</span>
+        <span id="lightbox-total">{images.length}</span>
+      </div>
+    </div>
+  </dialog>
+</div>
+
+<style>
+  /* Dialog styling */
+  #lightbox-dialog {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+    pointer-events: none;
+  }
+
+  #lightbox-dialog::backdrop {
+    background: rgba(28, 16, 24, 0.92);
+  }
+
+  #lightbox-dialog[open] {
+    opacity: 1;
+    pointer-events: auto;
+    animation: lightbox-open 0.3s ease-out;
+  }
+
+  #lightbox-dialog[open]::backdrop {
+    animation: backdrop-fade 0.3s ease-out;
+  }
+
+  @keyframes lightbox-open {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes backdrop-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Content container */
+  .lightbox-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  /* Image */
+  .lightbox-image {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    animation: lightbox-image-open 0.3s ease-out;
+  }
+
+  @keyframes lightbox-image-open {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Navigation buttons */
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease, opacity 0.2s ease;
+    z-index: 10000;
+  }
+
+  .lightbox-nav:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+
+  @media (hover: hover) {
+    .lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .lightbox-nav--prev {
+    left: 1rem;
+  }
+
+  .lightbox-nav--next {
+    right: 1rem;
+  }
+
+  .lightbox-nav-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Close button */
+  .lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    z-index: 10000;
+  }
+
+  .lightbox-close:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+
+  @media (hover: hover) {
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .lightbox-close-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Counter */
+  .lightbox-counter {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 10000;
+  }
+
+  /* Disable animations for users with motion sensitivity */
+  @media (prefers-reduced-motion: reduce) {
+    #lightbox-dialog,
+    .lightbox-image,
+    .lightbox-nav,
+    .lightbox-close {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>
