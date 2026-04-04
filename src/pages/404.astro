@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InstagramCTA from '../components/InstagramCTA.astro';
+---
+
+<BaseLayout
+  title="Page Not Found — Nails On Salon"
+  description="Sorry, the page you're looking for doesn't exist. Let's get you back on track."
+>
+  <!-- HERO SECTION -->
+  <section class="bg-bg-tint py-3xl sm:py-4xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto">
+        <h1 class="font-display font-light text-7xl sm:text-8xl text-brand mb-lg">
+          404
+        </h1>
+        <h2 class="font-display font-light text-h1-mobile sm:text-h1-desktop text-ink mb-md">
+          Page Not Found
+        </h2>
+        <p class="text-body-large text-muted mb-2xl">
+          Sorry! The page you're looking for doesn't exist. Let's get you back to where you need to be.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAVIGATION SECTION -->
+  <section class="bg-white py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <div class="max-w-2xl mx-auto">
+        <h3 class="font-display font-light text-h3-mobile sm:text-h3-desktop text-ink mb-lg text-center">
+          Explore Our Site
+        </h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+          <!-- Home -->
+          <a
+            href="/"
+            class="block p-lg border border-border rounded-lg hover:border-brand hover:bg-bg-tint transition-all duration-200"
+          >
+            <h4 class="font-display text-body-large text-ink mb-xs">
+              Home
+            </h4>
+            <p class="text-body-small text-muted">
+              Back to our homepage
+            </p>
+          </a>
+
+          <!-- Services -->
+          <a
+            href="/services"
+            class="block p-lg border border-border rounded-lg hover:border-brand hover:bg-bg-tint transition-all duration-200"
+          >
+            <h4 class="font-display text-body-large text-ink mb-xs">
+              Services
+            </h4>
+            <p class="text-body-small text-muted">
+              View our nail services & pricing
+            </p>
+          </a>
+
+          <!-- Gallery -->
+          <a
+            href="/gallery"
+            class="block p-lg border border-border rounded-lg hover:border-brand hover:bg-bg-tint transition-all duration-200"
+          >
+            <h4 class="font-display text-body-large text-ink mb-xs">
+              Gallery
+            </h4>
+            <p class="text-body-small text-muted">
+              Browse our recent work
+            </p>
+          </a>
+
+          <!-- Book -->
+          <a
+            href="/book"
+            class="block p-lg border border-brand rounded-lg hover:bg-bg-tint transition-all duration-200 bg-white"
+          >
+            <h4 class="font-display text-body-large text-ink mb-xs">
+              Book
+            </h4>
+            <p class="text-body-small text-muted">
+              Schedule your appointment
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="bg-bg-tint py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <div class="max-w-xl mx-auto text-center">
+        <h3 class="font-display font-light text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+          Need Help?
+        </h3>
+        <p class="text-body-large text-muted mb-2xl">
+          If you can't find what you're looking for, reach out to us on Instagram. We're happy to help!
+        </p>
+        <InstagramCTA variant="primary" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
