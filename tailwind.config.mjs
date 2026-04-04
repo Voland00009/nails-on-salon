@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         brand: '#FFC2D1',
+        'brand-hover': '#FFB3C6',
         ink: '#1C1018',
         'bg-tint': '#FFF5F7',
         muted: '#6B5B5E',

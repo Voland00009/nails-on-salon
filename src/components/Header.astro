@@ -42,7 +42,7 @@ function isActive(href: string, current: string): boolean {
           class:list={[
             'font-body font-medium text-ui uppercase text-ink transition-colors duration-200',
             link.label === 'Book'
-              ? 'bg-brand text-ink px-5 py-2 rounded-pill hover:bg-[#FFB3C6]'
+              ? 'bg-brand text-ink px-5 py-2 rounded-pill hover:bg-brand-hover'
               : 'relative hover:text-ink group',
             isActive(link.href, currentPath) && link.label !== 'Book'
               ? 'underline decoration-brand decoration-2 underline-offset-4'
