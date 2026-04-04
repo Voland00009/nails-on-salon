@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InstagramCTA from '../components/InstagramCTA.astro';
+---
+
+<BaseLayout
+  title="Book — Nails On Salon"
+  description="Schedule your nail appointment. Message us on Instagram to book your preferred date, time, and custom design."
+>
+  <!-- HERO SECTION -->
+  <section class="bg-bg-tint py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <h1 class="font-display font-light text-display-mobile sm:text-display-desktop text-ink">
+        Book Your Appointment
+      </h1>
+      <p class="text-body-large text-muted mt-md max-w-lg">
+        We accept appointments by Instagram DM. Let's create the perfect nails for you.
+      </p>
+    </div>
+  </section>
+
+  <!-- HOW TO BOOK SECTION -->
+  <section class="bg-white py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <div class="max-w-2xl">
+        <h2 class="font-display font-light text-h2-mobile sm:text-h2-desktop text-ink mb-lg">
+          How to Book
+        </h2>
+
+        <!-- Steps -->
+        <div class="space-y-lg">
+          <!-- Step 1 -->
+          <div class="border-l-4 border-brand pl-6">
+            <h3 class="font-display text-h4-mobile sm:text-h4-desktop text-ink mb-sm">
+              1. Message us on Instagram
+            </h3>
+            <p class="text-body-large text-muted">
+              Send a DM to <strong>@nailsonsalon</strong> with your preferred date, time, and design ideas. Include any reference photos if you have a specific style in mind.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="border-l-4 border-brand pl-6">
+            <h3 class="font-display text-h4-mobile sm:text-h4-desktop text-ink mb-sm">
+              2. Confirm Your Appointment
+            </h3>
+            <p class="text-body-large text-muted">
+              We'll respond with available time slots and confirm your appointment details. We'll also discuss any special requests or custom designs you'd like.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="border-l-4 border-brand pl-6">
+            <h3 class="font-display text-h4-mobile sm:text-h4-desktop text-ink mb-sm">
+              3. Arrive & Relax
+            </h3>
+            <p class="text-body-large text-muted">
+              Show up at your scheduled time. We're located in National City, close to the parking lot. Come ready to enjoy the experience.
+            </p>
+          </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="mt-2xl">
+          <InstagramCTA variant="primary" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION SECTION -->
+  <section class="bg-bg-tint py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <div class="max-w-2xl">
+        <h2 class="font-display font-light text-h2-mobile sm:text-h2-desktop text-ink mb-lg">
+          Location & Hours
+        </h2>
+
+        <!-- Address -->
+        <div class="bg-white rounded-lg p-lg sm:p-xl border border-border">
+          <p class="text-body-small text-muted uppercase tracking-wider mb-md">
+            Address
+          </p>
+          <p class="text-body-large text-ink font-medium mb-xs">
+            Nails On Salon
+          </p>
+          <p class="text-body-large text-muted">
+            3030 Plaza Bonita Rd<br />
+            Unit 1336, Suite 117<br />
+            National City, CA 91950
+          </p>
+
+          <!-- Hours -->
+          <div class="mt-lg pt-lg border-t border-border">
+            <p class="text-body-small text-muted uppercase tracking-wider mb-md">
+              Hours
+            </p>
+            <div class="space-y-xs text-body-large text-ink">
+              <p><span class="font-medium">Tuesday – Friday:</span> 11:00 AM – 6:00 PM</p>
+              <p><span class="font-medium">Saturday:</span> 10:00 AM – 5:00 PM</p>
+              <p><span class="font-medium">Sunday – Monday:</span> Closed</p>
+            </div>
+          </div>
+
+          <!-- Parking & Access -->
+          <div class="mt-lg pt-lg border-t border-border">
+            <p class="text-body-small text-muted uppercase tracking-wider mb-md">
+              Parking & Access
+            </p>
+            <p class="text-body-large text-muted">
+              Ample free parking available in the plaza. Easy street access from the main entrance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="bg-white py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <div class="max-w-2xl">
+        <h2 class="font-display font-light text-h2-mobile sm:text-h2-desktop text-ink mb-lg">
+          Questions?
+        </h2>
+
+        <div class="space-y-md">
+          <!-- Q1 -->
+          <div>
+            <h3 class="font-display text-body-large text-ink mb-xs">
+              How long does an appointment take?
+            </h3>
+            <p class="text-body-large text-muted">
+              Most appointments take 45 minutes to 1 hour, depending on the design complexity and nail type.
+            </p>
+          </div>
+
+          <!-- Q2 -->
+          <div>
+            <h3 class="font-display text-body-large text-ink mb-xs">
+              Do you accept walk-ins?
+            </h3>
+            <p class="text-body-large text-muted">
+              We accept appointments by Instagram DM only. This ensures we have time to discuss your design and prepare for your visit.
+            </p>
+          </div>
+
+          <!-- Q3 -->
+          <div>
+            <h3 class="font-display text-body-large text-ink mb-xs">
+              Can I change my appointment?
+            </h3>
+            <p class="text-body-large text-muted">
+              Yes! Just message us on Instagram with your new preferred time. We'll do our best to reschedule.
+            </p>
+          </div>
+
+          <!-- Q4 -->
+          <div>
+            <h3 class="font-display text-body-large text-ink mb-xs">
+              What payment methods do you accept?
+            </h3>
+            <p class="text-body-large text-muted">
+              Please ask about payment options when you confirm your appointment via Instagram DM.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA SECTION -->
+  <section class="bg-brand py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <div class="max-w-xl mx-auto text-center">
+        <h2 class="font-display font-light text-h2-mobile sm:text-h2-desktop text-ink mb-md">
+          Ready to get started?
+        </h2>
+        <p class="text-body-large text-ink mb-2xl">
+          Message us on Instagram and let's create your perfect nails.
+        </p>
+        <a
+          href="https://www.instagram.com/nailsonsalon?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-ink text-brand px-lg py-md rounded-pill font-body font-medium hover:bg-ink/90 transition-colors duration-200"
+        >
+          @nailsonsalon
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
