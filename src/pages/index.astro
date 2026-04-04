@@ -67,7 +67,7 @@ const { Content: HeroText } = await heroContent.render();
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg">
         <!-- Card 1: Manicure -->
         <a href="/services#manicure" class="group">
-          <div class="p-lg border-2 border-brand rounded-lg bg-white transition-all duration-200 hover:shadow-lg hover:-translate-y-px h-full flex flex-col">
+          <div class="p-lg border-l-2 border-l-brand rounded-lg bg-white transition-all duration-200 hover:shadow-lg hover:-translate-y-px h-full flex flex-col">
             <h3 class="font-display font-semibold text-h3-mobile lg:text-h3-desktop text-ink">
               Manicure
             </h3>
@@ -81,7 +81,7 @@ const { Content: HeroText } = await heroContent.render();
 
         <!-- Card 2: Pedicure -->
         <a href="/services#pedicure" class="group">
-          <div class="p-lg border-2 border-brand rounded-lg bg-white transition-all duration-200 hover:shadow-lg hover:-translate-y-px h-full flex flex-col">
+          <div class="p-lg border-l-2 border-l-brand rounded-lg bg-white transition-all duration-200 hover:shadow-lg hover:-translate-y-px h-full flex flex-col">
             <h3 class="font-display font-semibold text-h3-mobile lg:text-h3-desktop text-ink">
               Pedicure
             </h3>
@@ -95,7 +95,7 @@ const { Content: HeroText } = await heroContent.render();
 
         <!-- Card 3: Nail Art -->
         <a href="/services#nail-art" class="group">
-          <div class="p-lg border-2 border-border rounded-lg bg-white transition-all duration-200 hover:shadow-lg hover:-translate-y-px h-full flex flex-col">
+          <div class="p-lg border-l-2 border-l-[#E8E0E2] rounded-lg bg-white transition-all duration-200 hover:shadow-lg hover:-translate-y-px h-full flex flex-col">
             <h3 class="font-display font-semibold text-h3-mobile lg:text-h3-desktop text-ink">
               Nail Art & Design
             </h3>
@@ -120,13 +120,24 @@ const { Content: HeroText } = await heroContent.render();
   </section>
 
   <!-- GALLERY STRIP -->
-  <section class="bg-white py-3xl lg:py-5xl">
-    <div class="max-w-container-xl mx-auto px-5 sm:px-10">
-      <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink mb-2xl">
+  <section class="bg-bg-tint py-3xl lg:py-5xl">
+    <div class="max-w-container-xl mx-auto px-5 sm:px-10 mb-2xl">
+      <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink">
         Our Work
       </h2>
+    </div>
 
-      <GalleryStrip />
+    <GalleryStrip />
+
+    <div class="max-w-container-xl mx-auto px-5 sm:px-10 mt-2xl">
+      <div class="text-center">
+        <a
+          href="/portfolio"
+          class="inline-flex items-center justify-center gap-2 font-body font-medium text-brand hover:text-brand-hover transition-colors"
+        >
+          View Full Gallery →
+        </a>
+      </div>
     </div>
   </section>
 
@@ -151,7 +162,7 @@ const { Content: HeroText } = await heroContent.render();
         <div class="order-1 lg:order-2 flex flex-col gap-lg">
           <div>
             <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink">
-              Private Studio
+              Your Private Studio
             </h2>
             <p class="text-muted text-body-small mt-md leading-relaxed">
               Located in the heart of National City, our private studio is designed for personalized care and attention. We focus on clean techniques and natural-looking results in a welcoming environment.

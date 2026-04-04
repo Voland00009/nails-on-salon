@@ -1,23 +1,23 @@
 ---
 import { Image } from 'astro:assets';
-import img0013 from '../assets/work/IMG_0013.jpg';
+import img3209 from '../assets/work/IMG_3209.jpg';
 import img1043 from '../assets/work/IMG_1043.JPG';
 import img3148 from '../assets/work/IMG_3148.jpg';
 import img3206 from '../assets/work/IMG_3206.jpg';
-import img3209 from '../assets/work/IMG_3209.jpg';
 import img3213 from '../assets/work/IMG_3213.jpg';
+import img4349 from '../assets/work/IMG_4349.JPG';
 
 const photos = [
-  { src: img0013, alt: 'Nail design with elegant pink manicure' },
+  { src: img3209, alt: 'Detailed nail polish work' },
   { src: img1043, alt: 'Natural nail care and styling' },
   { src: img3148, alt: 'Professional nail art application' },
   { src: img3206, alt: 'Beautiful pedicure design' },
-  { src: img3209, alt: 'Detailed nail polish work' },
-  { src: img3213, alt: 'Signature nail studio design' },
+  { src: img4349, alt: 'Signature nail studio design' },
+  { src: img3213, alt: 'Custom nail design' },
 ];
 ---
 
-<div class="scroll-snap-x-mandatory flex gap-md overflow-x-auto">
+<div class="scroll-snap-x-mandatory flex gap-md overflow-x-auto px-5 sm:px-10">
   {photos.map((photo) => (
     <div class="scroll-snap-start flex-shrink-0 w-[140px] sm:w-[160px] md:w-[200px] aspect-[4/5] rounded-lg overflow-hidden">
       <Image
@@ -28,13 +28,4 @@ const photos = [
       />
     </div>
   ))}
-</div>
-
-<div class="mt-lg text-center">
-  <a
-    href="/portfolio"
-    class="inline-flex items-center justify-center font-body font-medium text-brand hover:text-brand transition-colors"
-  >
-    View All Work →
-  </a>
 </div>

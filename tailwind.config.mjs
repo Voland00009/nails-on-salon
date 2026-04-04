@@ -10,7 +10,7 @@ export default {
         'bg-tint': '#FFF5F7',
         muted: '#6B5B5E',
         gold: '#C4A265',
-        border: '#F0E8EB',
+        border: '#E8E0E2',
       },
       fontFamily: {
         display: ['"Cormorant Garamond"', 'serif'],
@@ -54,6 +54,9 @@ export default {
       boxShadow: {
         'brand-sm': '0 2px 6px rgba(28,16,24,0.08)',
         'brand-lg': '0 4px 12px rgba(28,16,24,0.1)',
+      },
+      borderWidth: {
+        'l-2': '0 0 0 2px',
       },
     },
   },
