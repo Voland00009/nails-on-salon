@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+
+const services = await getCollection('services');
+const siteContent = await getCollection('site');
+
+// Sort services by category and sortOrder
+const sortedServices = services.sort((a, b) => {
+  const categoryOrder = { manicure: 0, pedicure: 1, additional: 2 };
+  const categoryCompare = categoryOrder[a.data.category] - categoryOrder[b.data.category];
+  if (categoryCompare !== 0) return categoryCompare;
+  return a.data.sortOrder - b.data.sortOrder;
+});
+
+const heroContent = siteContent.find(item => item.slug === 'hero');
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Nails On Salon</title>
+	</head>
+	<body>
+		<h1>Nails On Salon</h1>
+		{heroContent && <p set:html={heroContent.body} />}
+
+		<h2>Services</h2>
+		<ul>
+			{sortedServices.map(service => (
+				<li>
+					<strong>{service.data.title}</strong>
+					{service.data.price && <span> - ${service.data.price}</span>}
+				</li>
+			))}
+		</ul>
+	</body>
+</html>
