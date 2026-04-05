@@ -19,10 +19,10 @@ const { Content: HeroText } = await heroContent.render();
   <section class="bg-white">
     <!-- Mobile: photo on top, text below -->
     <!-- Desktop: text 40% left, photo 60% right -->
-    <div class="flex flex-col lg:flex-row lg:items-center lg:min-h-[80vh]">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:h-[calc(100vh-72px)]">
 
       <!-- Photo (mobile: first, desktop: second via order) -->
-      <div class="lg:order-2 lg:w-[60%] overflow-hidden">
+      <div class="lg:order-2 lg:w-[60%] lg:h-full overflow-hidden">
         <Image
           src={heroImage}
           alt="Tetiana in her private nail studio with pink 'Hello Gorgeous' neon sign"
