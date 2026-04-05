@@ -6,7 +6,7 @@ import InstagramCTA from '../components/InstagramCTA.astro';
 import GalleryStrip from '../components/GalleryStrip.astro';
 import GoogleMap from '../components/GoogleMap.astro';
 import heroImage from '../assets/hero/IMG_3262.JPG';
-import studioImage from '../assets/salon/IMG_9975.jpg';
+import studioImage from '../assets/phenix/IMG_3268.JPG';
 
 const heroContent = await getEntry('site', 'hero');
 const { Content: HeroText } = await heroContent.render();
@@ -149,7 +149,7 @@ const { Content: HeroText } = await heroContent.render();
         <div class="order-2 lg:order-1 rounded-lg overflow-hidden">
           <Image
             src={studioImage}
-            alt="Nails On Salon private studio interior with modern design"
+            alt="Phenix Salon Suites entrance at Westfield Plaza Bonita — where to find Nails On Salon"
             widths={[640, 768, 1024]}
             sizes="(min-width: 1280px) 560px, (min-width: 1024px) 400px, 100vw"
             quality={80}
