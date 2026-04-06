@@ -210,39 +210,45 @@ const { Content: HeroText } = await heroContent.render();
       <div class="reveal mb-xl">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
           <div>
-            <Image
-              src={studioImage}
-              alt="Phenix Salon Suites entrance at Westfield Plaza Bonita"
-              widths={[320, 480, 640]}
-              sizes="(min-width: 1024px) 380px, 100vw"
-              quality={80}
-              loading="lazy"
-              class="w-full rounded-lg"
-            />
+            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+              <Image
+                src={studioImage}
+                alt="Phenix Salon Suites entrance at Westfield Plaza Bonita"
+                widths={[320, 480, 640]}
+                sizes="(min-width: 1024px) 380px, 100vw"
+                quality={80}
+                loading="lazy"
+                class="w-full h-full object-cover"
+              />
+            </div>
             <p class="text-muted text-body-small text-center mt-sm">Find the entrance</p>
           </div>
           <div>
-            <Image
-              src={wayfindingHall}
-              alt="Hallway inside Phenix Salon Suites"
-              widths={[320, 480, 640]}
-              sizes="(min-width: 1024px) 380px, 100vw"
-              quality={80}
-              loading="lazy"
-              class="w-full rounded-lg"
-            />
+            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+              <Image
+                src={wayfindingHall}
+                alt="Hallway inside Phenix Salon Suites"
+                widths={[320, 480, 640]}
+                sizes="(min-width: 1024px) 380px, 100vw"
+                quality={80}
+                loading="lazy"
+                class="w-full h-full object-cover"
+              />
+            </div>
             <p class="text-muted text-body-small text-center mt-sm">Walk through the hall</p>
           </div>
           <div>
-            <Image
-              src={wayfindingDoor}
-              alt="Nails On Salon studio door with logo"
-              widths={[320, 480, 640]}
-              sizes="(min-width: 1024px) 380px, 100vw"
-              quality={80}
-              loading="lazy"
-              class="w-full rounded-lg"
-            />
+            <div class="aspect-[3/4] rounded-lg overflow-hidden">
+              <Image
+                src={wayfindingDoor}
+                alt="Nails On Salon studio door with logo"
+                widths={[320, 480, 640]}
+                sizes="(min-width: 1024px) 380px, 100vw"
+                quality={80}
+                loading="lazy"
+                class="w-full h-full object-cover"
+              />
+            </div>
             <p class="text-muted text-body-small text-center mt-sm">Look for our door, Suite 117</p>
           </div>
         </div>
