@@ -60,7 +60,7 @@ const { Content: HeroText } = await heroContent.render();
   <!-- SERVICES TEASER -->
   <section class="bg-bg-tint py-2xl pb-lg lg:py-xl">
     <div class="max-w-container-xl mx-auto px-5 sm:px-10">
-      <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink mb-xl">
+      <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink mb-xl text-center lg:text-left">
         Featured Services
       </h2>
 
@@ -122,7 +122,7 @@ const { Content: HeroText } = await heroContent.render();
   <!-- GALLERY STRIP -->
   <section class="bg-bg-tint pt-lg pb-2xl lg:py-xl">
     <div class="max-w-container-xl mx-auto px-5 sm:px-10 mb-lg">
-      <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink">
+      <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink text-center lg:text-left">
         Our Work
       </h2>
     </div>
@@ -147,10 +147,10 @@ const { Content: HeroText } = await heroContent.render();
 
       <!-- Heading -->
       <div class="mb-xl">
-        <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink">
+        <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink text-center lg:text-left">
           Your Private Studio
         </h2>
-        <p class="text-muted text-body-small mt-md leading-relaxed max-w-[600px]">
+        <p class="text-muted text-body-small mt-md leading-relaxed max-w-[600px] text-center lg:text-left mx-auto lg:mx-0">
           Located in the heart of National City, our private studio is designed for personalized care and attention. We focus on clean techniques and natural-looking results in a welcoming environment.
         </p>
       </div>
@@ -174,18 +174,18 @@ const { Content: HeroText } = await heroContent.render();
       </div>
 
       <!-- Address + CTA -->
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md mt-lg pt-lg border-t border-border">
-        <div class="flex items-start gap-2 text-body-small">
+      <div class="flex flex-col items-center lg:flex-row lg:justify-between lg:items-center gap-md mt-lg pt-lg border-t border-border">
+        <div class="flex items-start gap-2 text-body-small justify-center lg:justify-start">
           <svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 14 6 14s6-8.75 6-14c0-3.314-2.686-6-6-6z"/>
             <circle cx="12" cy="8" r="2"/>
           </svg>
-          <address class="not-italic text-muted">
+          <address class="not-italic text-muted text-center lg:text-left">
             3030 Plaza Bonita Rd, Unit 1336, Suite 117<br />
             National City, CA 91950 &mdash; Phenix Salon Suites
           </address>
         </div>
-        <InstagramCTA variant="secondary" hint="Available for walk-ins and appointments" />
+        <InstagramCTA variant="secondary" />
       </div>
 
     </div>
