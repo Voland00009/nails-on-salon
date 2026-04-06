@@ -69,56 +69,57 @@ function isActive(href: string, current: string): boolean {
     </button>
   </div>
 
-  <!-- Mobile menu overlay -->
-  <div
-    id="mobile-menu"
-    class="fixed inset-0 z-[60] hidden lg:hidden"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Navigation menu"
-  >
-    <!-- Backdrop -->
-    <div id="mobile-menu-backdrop" class="absolute inset-0 bg-ink/30"></div>
-
-    <!-- Panel -->
-    <div
-      id="mobile-menu-panel"
-      class="absolute right-0 top-0 h-full w-full bg-white flex flex-col items-center justify-center translate-x-full transition-transform duration-300 ease-out"
-    >
-      <!-- Close button -->
-      <button
-        id="mobile-menu-close"
-        type="button"
-        class="absolute top-4 right-5 w-12 h-12 flex items-center justify-center"
-        aria-label="Close menu"
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18" />
-          <line x1="6" y1="6" x2="18" y2="18" />
-        </svg>
-      </button>
-
-      <nav aria-label="Mobile navigation" class="flex flex-col items-center gap-8">
-        {navLinks.map((link, i) => (
-          <a
-            href={link.href}
-            class:list={[
-              'font-body font-medium text-xl text-ink mobile-nav-link',
-              link.label === 'Book'
-                ? 'bg-brand px-8 py-3 rounded-pill mt-4'
-                : '',
-              isActive(link.href, currentPath) ? 'underline decoration-brand decoration-2 underline-offset-4' : '',
-            ]}
-            style={`transition-delay: ${i * 50}ms`}
-            {...(isActive(link.href, currentPath) ? { 'aria-current': 'page' } : {})}
-          >
-            {link.label}
-          </a>
-        ))}
-      </nav>
-    </div>
-  </div>
 </header>
+
+<!-- Mobile menu overlay (outside header to avoid z-index stacking context issues) -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-[60] hidden lg:hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation menu"
+>
+  <!-- Backdrop -->
+  <div id="mobile-menu-backdrop" class="absolute inset-0 bg-ink/30"></div>
+
+  <!-- Panel -->
+  <div
+    id="mobile-menu-panel"
+    class="absolute right-0 top-0 h-full w-full bg-white flex flex-col items-center justify-center translate-x-full transition-transform duration-300 ease-out"
+  >
+    <!-- Close button -->
+    <button
+      id="mobile-menu-close"
+      type="button"
+      class="absolute top-4 right-5 w-12 h-12 flex items-center justify-center"
+      aria-label="Close menu"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+
+    <nav aria-label="Mobile navigation" class="flex flex-col items-center gap-8">
+      {navLinks.map((link, i) => (
+        <a
+          href={link.href}
+          class:list={[
+            'font-body font-medium text-xl text-ink mobile-nav-link',
+            link.label === 'Book'
+              ? 'bg-brand px-8 py-3 rounded-pill mt-4'
+              : '',
+            isActive(link.href, currentPath) ? 'underline decoration-brand decoration-2 underline-offset-4' : '',
+          ]}
+          style={`transition-delay: ${i * 50}ms`}
+          {...(isActive(link.href, currentPath) ? { 'aria-current': 'page' } : {})}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</div>
 
 <script>
   const toggle = document.getElementById('mobile-menu-toggle');
