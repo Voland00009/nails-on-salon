@@ -8,6 +8,9 @@ import GoogleMap from '../components/GoogleMap.astro';
 import heroImage from '../assets/hero/IMG_3262.JPG';
 import helloImage from '../assets/hero/IMG_3260.JPG';
 import studioImage from '../assets/phenix/IMG_3268.JPG';
+import wayfindingDoor from '../assets/hero/IMG_3263.JPG';
+import wayfindingHall from '../assets/phenix/IMG_3266.JPG';
+import wayfindingEntrance from '../assets/phenix/IMG_3267.JPG';
 
 const heroContent = await getEntry('site', 'hero');
 const { Content: HeroText } = await heroContent.render();
@@ -189,6 +192,54 @@ const { Content: HeroText } = await heroContent.render();
         <p class="text-muted text-body-small mt-md leading-relaxed max-w-[600px] text-center lg:text-left mx-auto lg:mx-0">
           Located in the heart of National City, our private studio is designed for personalized care and attention. We focus on clean techniques and natural-looking results in a welcoming environment.
         </p>
+      </div>
+
+      <!-- Wayfinding Photos -->
+      <div class="reveal mb-xl">
+        <div class="grid grid-cols-3 gap-md max-lg:flex max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-mandatory max-lg:scrollbar-none max-lg:gap-md max-lg:-mx-5 max-lg:px-5">
+          <div class="max-lg:flex-shrink-0 max-lg:w-[75%] max-lg:snap-start">
+            <div class="h-[200px] lg:h-[240px] rounded-lg overflow-hidden">
+              <Image
+                src={wayfindingEntrance}
+                alt="Entrance to Phenix Salon Suites from outside"
+                widths={[320, 480, 640]}
+                sizes="(min-width: 1024px) 380px, 75vw"
+                quality={80}
+                loading="lazy"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p class="text-muted text-body-small text-center mt-sm">Find the entrance</p>
+          </div>
+          <div class="max-lg:flex-shrink-0 max-lg:w-[75%] max-lg:snap-start">
+            <div class="h-[200px] lg:h-[240px] rounded-lg overflow-hidden">
+              <Image
+                src={wayfindingHall}
+                alt="Hallway inside Phenix Salon Suites"
+                widths={[320, 480, 640]}
+                sizes="(min-width: 1024px) 380px, 75vw"
+                quality={80}
+                loading="lazy"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p class="text-muted text-body-small text-center mt-sm">Walk through the hall</p>
+          </div>
+          <div class="max-lg:flex-shrink-0 max-lg:w-[75%] max-lg:snap-start">
+            <div class="h-[200px] lg:h-[240px] rounded-lg overflow-hidden">
+              <Image
+                src={wayfindingDoor}
+                alt="Nails On Salon studio door with logo"
+                widths={[320, 480, 640]}
+                sizes="(min-width: 1024px) 380px, 75vw"
+                quality={80}
+                loading="lazy"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p class="text-muted text-body-small text-center mt-sm">Look for our door</p>
+          </div>
+        </div>
       </div>
 
       <!-- Photo + Map -->
