@@ -10,7 +10,6 @@ import helloImage from '../assets/hero/IMG_3260.JPG';
 import studioImage from '../assets/phenix/IMG_3268.JPG';
 import wayfindingDoor from '../assets/hero/IMG_3263.JPG';
 import wayfindingHall from '../assets/phenix/IMG_3266.JPG';
-import wayfindingEntrance from '../assets/phenix/IMG_3267.JPG';
 
 const heroContent = await getEntry('site', 'hero');
 const { Content: HeroText } = await heroContent.render();
@@ -199,10 +198,10 @@ const { Content: HeroText } = await heroContent.render();
         <h3 class="font-display font-light text-h3-mobile lg:text-h3-desktop text-ink text-center lg:text-left max-w-[600px] mx-auto lg:mx-0">
           How to Find Nails On Salon
         </h3>
-        <p class="text-ink text-body-small mt-md text-center lg:text-left max-w-[600px] mx-auto lg:mx-0">
-          We're inside Phenix Salon Suites at Plaza Bonita. Here's how to get to Unit 117:
+        <p class="text-muted text-body-small mt-md text-center lg:text-left max-w-[600px] mx-auto lg:mx-0">
+          We're inside Phenix Salon Suites at Plaza Bonita. Here's how to get to Suite 117:
         </p>
-        <p class="text-ink text-body-small mt-sm text-center lg:text-left max-w-[600px] mx-auto lg:mx-0">
+        <p class="text-muted text-body-small mt-sm text-center lg:text-left max-w-[600px] mx-auto lg:mx-0">
           We have a separate entrance from the parking lot — no need to walk through the mall.
         </p>
       </div>
@@ -212,8 +211,8 @@ const { Content: HeroText } = await heroContent.render();
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
           <div>
             <Image
-              src={wayfindingEntrance}
-              alt="Entrance to Phenix Salon Suites from outside"
+              src={studioImage}
+              alt="Phenix Salon Suites entrance at Westfield Plaza Bonita"
               widths={[320, 480, 640]}
               sizes="(min-width: 1024px) 380px, 100vw"
               quality={80}
@@ -244,42 +243,29 @@ const { Content: HeroText } = await heroContent.render();
               loading="lazy"
               class="w-full rounded-lg"
             />
-            <p class="text-muted text-body-small text-center mt-sm">Look for our door, Unit 117</p>
+            <p class="text-muted text-body-small text-center mt-sm">Look for our door, Suite 117</p>
           </div>
         </div>
       </div>
 
-      <!-- Photo + Map -->
+      <!-- Map + Address -->
       <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-lg">
-        <div class="h-[280px] lg:h-[360px] rounded-lg overflow-hidden">
-          <Image
-            src={studioImage}
-            alt="Phenix Salon Suites entrance at Westfield Plaza Bonita — where to find Nails On Salon"
-            widths={[640, 768, 1024]}
-            sizes="(min-width: 1280px) 560px, (min-width: 1024px) 400px, 100vw"
-            quality={80}
-            loading="lazy"
-            class="w-full h-full object-cover"
-          />
-        </div>
         <div class="h-[280px] lg:h-[360px] rounded-lg overflow-hidden border border-border">
           <GoogleMap />
         </div>
-      </div>
-
-      <!-- Address + CTA -->
-      <div class="reveal flex flex-col items-center lg:flex-row lg:justify-between lg:items-center gap-md mt-lg pt-lg border-t border-border">
-        <div class="flex items-start gap-2 text-body-small justify-center lg:justify-start">
-          <svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 14 6 14s6-8.75 6-14c0-3.314-2.686-6-6-6z"/>
-            <circle cx="12" cy="8" r="2"/>
-          </svg>
-          <address class="not-italic text-muted text-center lg:text-left">
-            3030 Plaza Bonita Rd, Unit 1336, Suite 117<br />
-            National City, CA 91950 &mdash; Phenix Salon Suites
-          </address>
+        <div class="flex flex-col justify-center items-center lg:items-start gap-md">
+          <div class="flex items-start gap-2 text-body-small justify-center lg:justify-start">
+            <svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 14 6 14s6-8.75 6-14c0-3.314-2.686-6-6-6z"/>
+              <circle cx="12" cy="8" r="2"/>
+            </svg>
+            <address class="not-italic text-muted text-center lg:text-left">
+              3030 Plaza Bonita Rd, Unit 1336, Suite 117<br />
+              National City, CA 91950 &mdash; Phenix Salon Suites
+            </address>
+          </div>
+          <InstagramCTA variant="secondary" />
         </div>
-        <InstagramCTA variant="secondary" />
       </div>
 
     </div>
