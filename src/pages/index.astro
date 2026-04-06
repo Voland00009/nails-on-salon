@@ -194,50 +194,57 @@ const { Content: HeroText } = await heroContent.render();
         </p>
       </div>
 
+      <!-- Wayfinding Intro -->
+      <div class="reveal mb-lg">
+        <h3 class="font-display font-light text-h3-mobile lg:text-h3-desktop text-ink text-center lg:text-left max-w-[600px] mx-auto lg:mx-0">
+          How to Find Nails On Salon
+        </h3>
+        <p class="text-ink text-body-small mt-md text-center lg:text-left max-w-[600px] mx-auto lg:mx-0">
+          We're inside Phenix Salon Suites at Plaza Bonita. Here's how to get to Unit 117:
+        </p>
+        <p class="text-ink text-body-small mt-sm text-center lg:text-left max-w-[600px] mx-auto lg:mx-0">
+          We have a separate entrance from the parking lot — no need to walk through the mall.
+        </p>
+      </div>
+
       <!-- Wayfinding Photos -->
       <div class="reveal mb-xl">
-        <div class="grid grid-cols-3 gap-md max-lg:flex max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-mandatory max-lg:scrollbar-none max-lg:gap-md max-lg:-mx-5 max-lg:px-5">
-          <div class="max-lg:flex-shrink-0 max-lg:w-[75%] max-lg:snap-start">
-            <div class="h-[200px] lg:h-[240px] rounded-lg overflow-hidden">
-              <Image
-                src={wayfindingEntrance}
-                alt="Entrance to Phenix Salon Suites from outside"
-                widths={[320, 480, 640]}
-                sizes="(min-width: 1024px) 380px, 75vw"
-                quality={80}
-                loading="lazy"
-                class="w-full h-full object-cover"
-              />
-            </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+          <div>
+            <Image
+              src={wayfindingEntrance}
+              alt="Entrance to Phenix Salon Suites from outside"
+              widths={[320, 480, 640]}
+              sizes="(min-width: 1024px) 380px, 100vw"
+              quality={80}
+              loading="lazy"
+              class="w-full rounded-lg"
+            />
             <p class="text-muted text-body-small text-center mt-sm">Find the entrance</p>
           </div>
-          <div class="max-lg:flex-shrink-0 max-lg:w-[75%] max-lg:snap-start">
-            <div class="h-[200px] lg:h-[240px] rounded-lg overflow-hidden">
-              <Image
-                src={wayfindingHall}
-                alt="Hallway inside Phenix Salon Suites"
-                widths={[320, 480, 640]}
-                sizes="(min-width: 1024px) 380px, 75vw"
-                quality={80}
-                loading="lazy"
-                class="w-full h-full object-cover"
-              />
-            </div>
+          <div>
+            <Image
+              src={wayfindingHall}
+              alt="Hallway inside Phenix Salon Suites"
+              widths={[320, 480, 640]}
+              sizes="(min-width: 1024px) 380px, 100vw"
+              quality={80}
+              loading="lazy"
+              class="w-full rounded-lg"
+            />
             <p class="text-muted text-body-small text-center mt-sm">Walk through the hall</p>
           </div>
-          <div class="max-lg:flex-shrink-0 max-lg:w-[75%] max-lg:snap-start">
-            <div class="h-[200px] lg:h-[240px] rounded-lg overflow-hidden">
-              <Image
-                src={wayfindingDoor}
-                alt="Nails On Salon studio door with logo"
-                widths={[320, 480, 640]}
-                sizes="(min-width: 1024px) 380px, 75vw"
-                quality={80}
-                loading="lazy"
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <p class="text-muted text-body-small text-center mt-sm">Look for our door</p>
+          <div>
+            <Image
+              src={wayfindingDoor}
+              alt="Nails On Salon studio door with logo"
+              widths={[320, 480, 640]}
+              sizes="(min-width: 1024px) 380px, 100vw"
+              quality={80}
+              loading="lazy"
+              class="w-full rounded-lg"
+            />
+            <p class="text-muted text-body-small text-center mt-sm">Look for our door, Unit 117</p>
           </div>
         </div>
       </div>
