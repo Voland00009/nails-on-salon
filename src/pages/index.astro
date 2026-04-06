@@ -60,13 +60,13 @@ const { Content: HeroText } = await heroContent.render();
   <!-- SERVICES TEASER -->
   <section class="bg-bg-tint py-2xl pb-lg lg:py-xl">
     <div class="max-w-container-xl mx-auto px-5 sm:px-10">
-      <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink mb-xl text-center lg:text-left">
+      <h2 class="reveal font-display font-light text-h2-mobile lg:text-h2-desktop text-ink mb-xl text-center lg:text-left">
         Featured Services
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg">
         <!-- Card 1: Manicure -->
-        <a href="/services#manicure" class="group">
+        <a href="/services#manicure" class="group reveal" style="transition-delay: 0.1s">
           <div class="p-lg border-l-2 border-l-brand rounded-lg bg-white transition-all duration-200 hover:shadow-lg hover:-translate-y-px h-full flex flex-col">
             <h3 class="font-display font-semibold text-h3-mobile lg:text-h3-desktop text-ink">
               Manicure
@@ -80,7 +80,7 @@ const { Content: HeroText } = await heroContent.render();
         </a>
 
         <!-- Card 2: Pedicure -->
-        <a href="/services#pedicure" class="group">
+        <a href="/services#pedicure" class="group reveal" style="transition-delay: 0.2s">
           <div class="p-lg border-l-2 border-l-brand rounded-lg bg-white transition-all duration-200 hover:shadow-lg hover:-translate-y-px h-full flex flex-col">
             <h3 class="font-display font-semibold text-h3-mobile lg:text-h3-desktop text-ink">
               Pedicure
@@ -94,7 +94,7 @@ const { Content: HeroText } = await heroContent.render();
         </a>
 
         <!-- Card 3: Nail Art -->
-        <a href="/services#nail-art" class="group">
+        <a href="/services#nail-art" class="group reveal" style="transition-delay: 0.3s">
           <div class="p-lg border-l-2 border-l-brand rounded-lg bg-white transition-all duration-200 hover:shadow-lg hover:-translate-y-px h-full flex flex-col">
             <h3 class="font-display font-semibold text-h3-mobile lg:text-h3-desktop text-ink">
               Nail Art & Design
@@ -108,7 +108,7 @@ const { Content: HeroText } = await heroContent.render();
         </a>
       </div>
 
-      <div class="text-center mt-xl">
+      <div class="reveal text-center mt-xl">
         <a
           href="/services"
           class="inline-flex items-center justify-center gap-2 font-body font-medium rounded-pill bg-brand text-ink transition-all duration-200 px-8 py-4 text-ui-medium tracking-[0.03em] min-h-[48px] hover:bg-brand-hover hover:-translate-y-px active:translate-y-0"
@@ -122,14 +122,14 @@ const { Content: HeroText } = await heroContent.render();
   <!-- GALLERY STRIP -->
   <section class="bg-bg-tint pt-lg pb-lg lg:py-xl">
     <div class="max-w-container-xl mx-auto px-5 sm:px-10 mb-lg">
-      <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink text-center lg:text-left">
+      <h2 class="reveal font-display font-light text-h2-mobile lg:text-h2-desktop text-ink text-center lg:text-left">
         Our Work
       </h2>
     </div>
 
     <GalleryStrip />
 
-    <div class="max-w-container-xl mx-auto px-5 sm:px-10 mt-lg">
+    <div class="reveal max-w-container-xl mx-auto px-5 sm:px-10 mt-lg">
       <div class="text-center">
         <a
           href="/portfolio"
@@ -147,7 +147,7 @@ const { Content: HeroText } = await heroContent.render();
 
       <!-- Heading -->
       <div class="mb-xl">
-        <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink text-center lg:text-left">
+        <h2 class="reveal font-display font-light text-h2-mobile lg:text-h2-desktop text-ink text-center lg:text-left">
           Your Private Studio
         </h2>
         <p class="text-muted text-body-small mt-md leading-relaxed max-w-[600px] text-center lg:text-left mx-auto lg:mx-0">
@@ -156,7 +156,7 @@ const { Content: HeroText } = await heroContent.render();
       </div>
 
       <!-- Photo + Map -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
+      <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-lg">
         <div class="h-[280px] lg:h-[360px] rounded-lg overflow-hidden">
           <Image
             src={studioImage}
@@ -174,7 +174,7 @@ const { Content: HeroText } = await heroContent.render();
       </div>
 
       <!-- Address + CTA -->
-      <div class="flex flex-col items-center lg:flex-row lg:justify-between lg:items-center gap-md mt-lg pt-lg border-t border-border">
+      <div class="reveal flex flex-col items-center lg:flex-row lg:justify-between lg:items-center gap-md mt-lg pt-lg border-t border-border">
         <div class="flex items-start gap-2 text-body-small justify-center lg:justify-start">
           <svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 14 6 14s6-8.75 6-14c0-3.314-2.686-6-6-6z"/>
@@ -190,4 +190,20 @@ const { Content: HeroText } = await heroContent.render();
 
     </div>
   </section>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  </script>
 </BaseLayout>

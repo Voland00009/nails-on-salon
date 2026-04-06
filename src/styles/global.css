@@ -82,6 +82,18 @@
   animation: heroTextSlide 0.4s ease-out both;
 }
 
+/* Scroll-reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
 /* Scroll snap utilities */
 .scroll-snap-x-mandatory {
   scroll-snap-type: x mandatory;
