@@ -6,6 +6,7 @@ import InstagramCTA from '../components/InstagramCTA.astro';
 import GalleryStrip from '../components/GalleryStrip.astro';
 import GoogleMap from '../components/GoogleMap.astro';
 import heroImage from '../assets/hero/IMG_3262.JPG';
+import helloImage from '../assets/hero/IMG_3260.JPG';
 import studioImage from '../assets/phenix/IMG_3268.JPG';
 
 const heroContent = await getEntry('site', 'hero');
@@ -137,6 +138,41 @@ const { Content: HeroText } = await heroContent.render();
         >
           View Full Gallery →
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HELLO GORGEOUS -->
+  <section class="bg-white py-2xl lg:py-xl">
+    <div class="max-w-container-xl mx-auto px-5 sm:px-10">
+      <div class="flex flex-col lg:flex-row lg:items-center gap-xl">
+
+        <!-- Photo -->
+        <div class="reveal lg:w-1/2">
+          <Image
+            src={helloImage}
+            alt="Tetiana smiling next to her pink 'Hello Gorgeous' neon sign in the studio"
+            widths={[640, 768, 1024]}
+            sizes="(min-width: 1280px) 560px, (min-width: 1024px) 400px, 100vw"
+            quality={80}
+            loading="lazy"
+            class="w-full h-[400px] lg:h-[480px] object-cover rounded-lg"
+          />
+        </div>
+
+        <!-- Text -->
+        <div class="reveal lg:w-1/2" style="transition-delay: 0.15s">
+          <h2 class="font-display font-light text-display-mobile lg:text-display-desktop neon-glow">
+            Hello Gorgeous
+          </h2>
+          <p class="text-ink text-body-small leading-relaxed mt-md max-w-[460px]">
+            Every visit is a personal experience. I take my time with each client to ensure you leave feeling beautiful and confident.
+          </p>
+          <div class="mt-xl">
+            <InstagramCTA variant="primary" />
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

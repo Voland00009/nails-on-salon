@@ -94,6 +94,34 @@
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
+/* Neon glow effect for "Hello Gorgeous" */
+.neon-glow {
+  color: #FFC2D1;
+  text-shadow:
+    0 0 7px rgba(255, 194, 209, 0.7),
+    0 0 20px rgba(255, 194, 209, 0.5),
+    0 0 40px rgba(255, 194, 209, 0.3),
+    0 0 80px rgba(255, 194, 209, 0.15);
+  animation: neonPulse 3s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 7px rgba(255, 194, 209, 0.7),
+      0 0 20px rgba(255, 194, 209, 0.5),
+      0 0 40px rgba(255, 194, 209, 0.3),
+      0 0 80px rgba(255, 194, 209, 0.15);
+  }
+  50% {
+    text-shadow:
+      0 0 10px rgba(255, 194, 209, 1),
+      0 0 30px rgba(255, 194, 209, 0.7),
+      0 0 60px rgba(255, 194, 209, 0.4),
+      0 0 100px rgba(255, 194, 209, 0.2);
+  }
+}
+
 /* Scroll snap utilities */
 .scroll-snap-x-mandatory {
   scroll-snap-type: x mandatory;
