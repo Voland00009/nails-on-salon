@@ -22,103 +22,109 @@
 ```
 1. HERO              — без изменений (IMG_3262, текст, CTA)
 2. SERVICES TEASER   — без изменений (3 карточки)
-3. GALLERY STRIP     — без изменений (6 фото работ)
-4. HELLO GORGEOUS    — НОВАЯ СЕКЦИЯ (IMG_3260 + neon-текст + CTA)
-5. STUDIO & LOCATION — расширить Phenix-фото (IMG_3263, IMG_3266, IMG_3267)
+3. GALLERY STRIP     — убрать process-фото (IMG_3264, IMG_3265)
+4. HELLO GORGEOUS    — исправить обрезку фото (пропорциональное)
+5. STUDIO & LOCATION — текст-инструкция + пропорциональные фото + vertical stack mobile
 ```
 
 ---
 
-## Task 1: Scroll-Reveal Animations
+## Уже реализовано (коммиты на main)
 
-**Что:** CSS-анимации появления элементов при скролле.
-
-**Как:**
-- Добавить CSS-класс `.reveal` с `opacity: 0; transform: translateY(20px)`
-- Добавить `.reveal.visible` с `opacity: 1; transform: translateY(0); transition: 0.6s ease-out`
-- Inline `<script>` с IntersectionObserver (~15 строк JS), который добавляет `.visible` при пересечении viewport
-- Применить `.reveal` к: заголовкам секций, карточкам услуг (с stagger-delay), кнопкам CTA, фото в gallery strip
-- Карточки услуг получают `.reveal` с `style="transition-delay: 0.1s/0.2s/0.3s"` для эффекта каскада
-- Уважать `prefers-reduced-motion` — уже есть в global.css, transition-duration обнулится автоматически
-
-**Файлы:**
-- `src/styles/global.css` — добавить `.reveal` / `.reveal.visible`
-- `src/pages/index.astro` — добавить классы `.reveal` к элементам + inline script
-- `src/layouts/BaseLayout.astro` — если скрипт вынести глобально (опционально)
-
-**Не трогать:** Существующие `.animate-hero-fade` и `.animate-hero-text` в hero — они работают на CSS animation (не на scroll), оставить как есть.
+- `153f45b` — scroll-reveal анимации (Task 1) — **DONE**
+- `9f9cb5f` — Hello Gorgeous секция (Task 2) — **DONE, нужны правки**
+- `c723733` — wayfinding фото в Studio & Location (Task 3) — **DONE, нужны правки**
+- `a3933d6` — process фото в Gallery Strip (Task 4) — **DONE, нужен откат**
 
 ---
 
-## Task 2: "Hello Gorgeous" Section
+## Task A: Удалить process-фото из Gallery Strip
 
-**Что:** Новая секция между Gallery Strip и Studio & Location.
+**Файл:** `src/components/GalleryStrip.astro`
 
-**Layout:**
-- Фон: `bg-white` (контраст с `bg-tint` секций вокруг)
-- Desktop: фото слева (50%), текст справа (50%)
-- Mobile: фото сверху, текст снизу
-- Фото: `IMG_3260.JPG` (портрет Тани с неоновой вывеской) — нужно предварительно скопировать в `src/assets/hero/`
-- Текст: "Hello Gorgeous" в стиле Cormorant Garamond + 1-2 строки тёплого текста + CTA кнопка
+**Что:** Убрать IMG_3264 и IMG_3265 из imports и массива `photos`. Остаётся 6 фото работ.
 
-**Neon Glow Effect:**
-- CSS-класс `.neon-glow` для текста "Hello Gorgeous"
-- `text-shadow` с несколькими слоями розового (#FFC2D1) и белого свечения
-- `@keyframes neonPulse` — мягкое мерцание (opacity text-shadow от 0.6 до 1.0), 3-4 секунды цикл
-- Цвет текста: `#FFC2D1` на белом фоне **не пройдёт WCAG** для обычного текста, НО это декоративный заголовок (не несущий информацию), поэтому допустимо. Рядом должен быть читаемый текст в `text-ink`.
-- `prefers-reduced-motion: reduce` — отключить пульсацию, оставить статичный glow
-
-**Файлы:**
-- `src/assets/hero/IMG_3260.JPG` — уже есть в src/assets/hero/
-- `src/styles/global.css` — добавить `.neon-glow` и `@keyframes neonPulse`
-- `src/pages/index.astro` — добавить секцию между Gallery Strip и Studio
+**Почему:** Process-фото (Таня за работой) не относятся к портфолио nail art. Gallery Strip — витрина результатов.
 
 ---
 
-## Task 3: Enhance Studio & Location with Wayfinding Photos
+## Task B: Исправить обрезку фото в Hello Gorgeous
 
-**Что:** Добавить фото "как найти студию" в секцию Studio & Location.
+**Файл:** `src/pages/index.astro` (секция HELLO GORGEOUS)
 
-**Текущее состояние:** 2 колонки — фото Phenix (IMG_3268) + Google Map.
+**Что:** Убрать фиксированную высоту, показать фото пропорционально.
 
-**После изменений:**
-- Над фото+картой добавить горизонтальную полоску из 3 маленьких фото-подсказок:
-  - IMG_3263 (дверь студии с логотипом Nails On)
-  - IMG_3266 (холл Phenix Salon Suites внутри)
-  - IMG_3267 (входная дверь Phenix снаружи)
-- Layout: 3 фото в ряд, одинаковый размер, rounded, с подписями ("Find the entrance", "Walk through the hall", "Look for our door")
-- Mobile: горизонтальный скролл (как gallery strip)
-- Это создаёт мини-путеводитель: фасад → холл → дверь студии
+```
+Было:  class="w-full h-[400px] lg:h-[480px] object-cover rounded-lg"
+Будет: class="w-full rounded-lg"
+```
 
-**Файлы:**
-- `src/assets/hero/IMG_3263.JPG` — скопировать из `assets/Hero/`
-- `src/assets/phenix/IMG_3266.JPG` — уже есть в src/assets/phenix/
-- `src/assets/phenix/IMG_3267.JPG` — уже есть в src/assets/phenix/
-- `src/pages/index.astro` — изменить секцию Studio & Location
-
-**Не трогать:** Существующие фото студии (IMG_3268) и Google Map остаются на месте.
+**Почему:** Фиксированная высота + object-cover обрезает верх фото — теряется надпись "Hello Gorgeous" на неоновой вывеске.
 
 ---
 
-## Task 4: Add Remaining Hero Photos
+## Task C: Переработка Wayfinding в Studio & Location
 
-**Что:** Интегрировать оставшиеся неиспользованные Hero-фото.
+**Файл:** `src/pages/index.astro` (секция STUDIO & LOCATION)
 
-**Фото:**
-- IMG_3265 (Таня за работой, крупный план, розовый фартук)
-- IMG_3264 (Таня улыбается во время работы)
-- IMG_3259 (Таня в коридоре, улыбается)
+Четыре изменения:
 
-**Варианты использования:**
-- IMG_3265 + IMG_3264: добавить в Gallery Strip как "process" фото (показать не только результаты, но и процесс работы), ИЛИ использовать в "Hello Gorgeous" секции как дополнительные
-- IMG_3259: можно использовать на странице Book или About (не на главной — перебор фото одного человека на одной странице = "культ личности")
+### C1. Текст-инструкция перед wayfinding-фото
 
-**Решение:** Добавить IMG_3265 и IMG_3264 в начало Gallery Strip (процесс → результат). IMG_3259 — отложить для страницы /book.
+Добавить между описанием секции и wayfinding-фото:
 
-**Файлы:**
-- `src/assets/hero/IMG_3265.JPG` — скопировать из `assets/Hero/`
-- `src/assets/hero/IMG_3264.JPG` — скопировать из `assets/Hero/`
-- `src/components/GalleryStrip.astro` — добавить 2 фото в массив
+```html
+<h3> "How to Find Nails On Salon"           — Cormorant Garamond, font-light
+<p>  "We're inside Phenix Salon Suites
+      at Plaza Bonita. Here's how to
+      get to Unit 117:"                      — text-ink, text-body-small
+<p>  "We have a separate entrance from
+      the parking lot — no need to walk
+      through the mall."                     — text-ink, text-body-small
+```
+
+Стилистика совпадает с существующим описанием секции.
+
+**Контекст:** Клиенты часто не понимают, что у Phenix есть отдельный вход с парковки. Можно оставить машину прямо у входа, не нужно идти через молл.
+
+### C2. Фото без обрезки
+
+```
+Было:  <div class="h-[200px] lg:h-[240px]"> + object-cover
+Будет: убрать фиксированный контейнер, фото пропорциональное
+```
+
+Все 3 wayfinding-фото вертикальные (portrait). object-cover с фиксированной высотой обрезает:
+- IMG_3267: стеклянную дверь Phenix
+- IMG_3266: логотип Phenix Salon Suites на стене
+- IMG_3263: логотип Nails On и QR-код на двери
+
+### C3. Mobile: вертикальный стек
+
+```
+Было:  max-lg:flex max-lg:overflow-x-auto (горизонтальный скролл, 75% ширины)
+Будет: grid-cols-1 на mobile (вертикальный стек, полная ширина)
+       grid-cols-3 на desktop (три в ряд)
+```
+
+Интуитивнее — клиент листает сверху вниз и видит маршрут.
+
+### C4. Подпись третьего фото
+
+```
+Было:  "Look for our door"
+Будет: "Look for our door, Unit 117"
+```
+
+---
+
+## Task D: Проверить предыдущие коммиты на ошибки
+
+Проверить коммиты 153f45b, 9f9cb5f, c723733, a3933d6 на:
+- Неиспользуемые imports
+- Accessibility issues
+- CLS problems
+- Стилистические несоответствия с бренд-гайдом
 
 ---
 
@@ -127,14 +133,14 @@
 - **Zero client JS по умолчанию (Astro).** IntersectionObserver — единственное исключение, добавляется как inline `<script>` (~15 строк).
 - **WCAG 2.1 AA:** Neon glow текст — декоративный (дублируется читаемым текстом). `prefers-reduced-motion` уже обрабатывается в global.css.
 - **Lighthouse Performance >= 90:** Все новые фото — через `<Image>` компонент Astro (автоматические AVIF/WebP, srcset). `loading="lazy"` для всего кроме hero.
-- **CLS < 0.05:** Все фото-контейнеры — фиксированные `aspect-ratio` или `h-[XXXpx]`.
+- **Brand:** Cormorant Garamond (заголовки), DM Sans (текст), brand #FFC2D1, ink #1C1018, bg-tint #FFF5F7. Текст на brand-фоне всегда ink. max-w-container-xl (1280px), px-5 sm:px-10.
 
 ## Git Strategy
 
-Каждая задача = отдельный коммит на ветке `main`. Формат:
-- Task 1: `feat: add scroll-reveal animations to homepage sections`
-- Task 2: `feat: add Hello Gorgeous section with neon glow effect`
-- Task 3: `feat: add wayfinding photos to Studio & Location section`
-- Task 4: `feat: add process photos to gallery strip`
+Каждая задача = отдельный коммит + push на `main`. Формат conventional commits.
 
-Если что-то сломалось — `git revert <commit-hash>` для отката конкретной задачи.
+## Порядок реализации (по сессиям)
+
+**Сессия 1:** Task A (Gallery Strip) + Task B (Hello Gorgeous crop fix) — быстрые правки
+**Сессия 2:** Task C (Wayfinding переработка) — крупная задача
+**Сессия 3:** Task D (аудит предыдущих коммитов)
