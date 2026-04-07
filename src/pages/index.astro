@@ -149,8 +149,8 @@ const { Content: HeroText } = await heroContent.render();
     <div class="max-w-container-xl mx-auto px-5 sm:px-10">
       <div class="flex flex-col lg:flex-row lg:items-center gap-xl">
 
-        <!-- Photo -->
-        <div class="reveal lg:w-1/2">
+        <!-- Photo (mobile: second, desktop: first via order) -->
+        <div class="reveal lg:w-1/2 order-2 lg:order-1">
           <Image
             src={helloImage}
             alt="Tetiana smiling next to her pink 'Hello Gorgeous' neon sign in the studio"
@@ -162,8 +162,8 @@ const { Content: HeroText } = await heroContent.render();
           />
         </div>
 
-        <!-- Text -->
-        <div class="reveal lg:w-1/2" style="transition-delay: 0.15s">
+        <!-- Text (mobile: first, desktop: second via order) -->
+        <div class="reveal lg:w-1/2 order-1 lg:order-2" style="transition-delay: 0.15s">
           <h2 class="font-display font-light text-display-mobile lg:text-display-desktop neon-glow">
             Hello Gorgeous
           </h2>
