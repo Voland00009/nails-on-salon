@@ -16,10 +16,8 @@ const priceDisplay = priceMax ? `$${price}–${priceMax}` : `$${price}`;
 
 <div
   class:list={[
-    'py-lg border-b border-border last:border-b-0 transition-colors duration-200',
-    signature
-      ? 'bg-bg-tint pl-lg border-l-[3px] border-l-gold'
-      : 'hover:bg-bg-tint',
+    'py-lg',
+    signature && 'bg-bg-tint pl-lg border-l-[3px] border-l-gold',
   ]}
 >
   {signature && (
@@ -49,7 +47,7 @@ const priceDisplay = priceMax ? `$${price}–${priceMax}` : `$${price}`;
   </div>
 
   {(description || includes) && (
-    <p class="text-body-small text-muted mt-2 line-clamp-2">
+    <p class="text-body-small text-muted mt-2">
       {description || (includes && `Includes: ${includes}`)}
     </p>
   )}

@@ -12,7 +12,7 @@ const priceDisplay = priceMax ? `$${price}–${priceMax}` : `$${price}`;
 const priceAndDuration = duration ? `${priceDisplay} · ${duration}` : priceDisplay;
 ---
 
-<div class="flex flex-col sm:flex-row sm:justify-between py-md border-b border-border">
+<div class="flex flex-col sm:flex-row sm:justify-between py-md">
   <span class="text-ink">
     {title}
     {includes && <span class="text-muted text-sm"> ({includes})</span>}
