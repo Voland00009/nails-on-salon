@@ -1,4 +1,6 @@
 ---
+import { instagramDmUrl } from '../config/site';
+
 interface Props {
   variant?: 'primary' | 'secondary';
   hint?: string;
@@ -11,7 +13,7 @@ const isPrimary = variant === 'primary';
 
 <div class:list={['flex flex-col items-center', className]}>
   <a
-    href="https://ig.me/m/nailsonsalon"
+    href={instagramDmUrl}
     target="_blank"
     rel="noopener noreferrer"
     class:list={[

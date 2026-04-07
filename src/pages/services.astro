@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ServiceCardCompact from '../components/ServiceCardCompact.astro';
+import { instagramDmUrl } from '../config/site';
 
 // Get all services from content collection
 const allServices = await getCollection('services');
@@ -107,7 +108,7 @@ const categoryLabels: Record<string, string> = {
             To schedule your appointment, please message us on Instagram. We'll confirm your preferred date, time, and service.
           </p>
           <a
-            href="https://www.instagram.com/nailsonsalon?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr"
+            href={instagramDmUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center gap-2 mt-md px-8 py-4 bg-brand text-ink font-body font-medium rounded-pill text-ui-medium tracking-[0.03em] min-h-[48px] transition-all duration-200 hover:bg-brand-hover hover:-translate-y-px active:translate-y-0"
