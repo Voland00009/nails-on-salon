@@ -48,7 +48,7 @@ const priceDisplay = priceMax ? `$${price}–${priceMax}` : `$${price}`;
 
   {(description || includes) && (
     <p class="text-body-small text-muted mt-xs">
-      {description || (includes && `Includes: ${includes}`)}
+      {description || includes}
     </p>
   )}
 </div>
