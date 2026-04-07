@@ -8,6 +8,7 @@ interface Props {
   ogImage?: string;
 }
 
+// TODO: replace public/og-image.jpg with a proper 1200×630 landscape version
 const { title, description, ogImage = '/og-image.jpg' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
