@@ -52,6 +52,10 @@ const localBusinessSchema = {
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
 
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
     <!-- Schema.org LocalBusiness -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 

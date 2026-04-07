@@ -37,7 +37,7 @@ const categoryLabels: Record<string, string> = {
   description="Premium manicure and pedicure services. Browse our full menu of services and pricing."
 >
   <!-- HEADER -->
-  <section class="bg-bg-tint py-2xl sm:py-3xl">
+  <section class="bg-bg-tint py-2xl lg:py-3xl">
     <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
       <h1 class="font-display font-light text-h1-mobile lg:text-h1-desktop text-ink">
         Our Services
@@ -58,9 +58,9 @@ const categoryLabels: Record<string, string> = {
 
       return (
         <section id={category} class="border-b border-border last:border-b-0">
-          <div class="px-5 sm:px-10 max-w-container-xl mx-auto py-lg sm:py-2xl">
+          <div class="px-5 sm:px-10 max-w-container-xl mx-auto py-lg lg:py-2xl">
             <!-- Category heading -->
-            <h2 class="font-display font-light text-h2-mobile sm:text-h2-desktop text-ink mb-lg sm:mb-2xl">
+            <h2 class="font-display font-light text-h2-mobile lg:text-h2-desktop text-ink mb-lg lg:mb-2xl">
               {categoryLabels[category]}
             </h2>
 
@@ -98,9 +98,9 @@ const categoryLabels: Record<string, string> = {
   </div>
 
   <!-- INFO SECTION -->
-  <section class="bg-bg-tint py-2xl sm:py-3xl">
+  <section class="bg-bg-tint py-2xl lg:py-3xl">
     <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-lg lg:gap-2xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-lg lg:gap-2xl">
         <div>
           <h4 class="font-display font-semibold text-h4-mobile lg:text-h4-desktop text-ink mb-md">
             How to Book
