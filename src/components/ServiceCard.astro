@@ -17,11 +17,11 @@ const priceDisplay = priceMax ? `$${price}–${priceMax}` : `$${price}`;
 <div
   class:list={[
     'py-lg',
-    signature && 'bg-bg-tint pl-lg border-l-[3px] border-l-gold',
+    signature && 'bg-bg-tint px-lg border-l-[3px] border-l-gold',
   ]}
 >
   {signature && (
-    <span class="inline-block font-body font-medium text-label uppercase text-ink bg-brand px-3 py-1 rounded-full mb-1">
+    <span class="inline-block font-body font-medium text-label uppercase text-ink bg-brand px-3 py-1 rounded-full mb-xs">
       SIGNATURE
     </span>
   )}
@@ -33,7 +33,7 @@ const priceDisplay = priceMax ? `$${price}–${priceMax}` : `$${price}`;
         {title}
       </h3>
       {/* Mobile: price + duration inline under title */}
-      <p class="sm:hidden text-sm text-ink mt-1">
+      <p class="sm:hidden text-body-small text-ink mt-1">
         <span class="font-medium">{priceDisplay}</span>
         {duration && <span class="text-muted"> · {duration}</span>}
       </p>
@@ -41,13 +41,13 @@ const priceDisplay = priceMax ? `$${price}–${priceMax}` : `$${price}`;
 
     {/* Desktop: price + duration right-aligned */}
     <div class="hidden sm:flex flex-col items-end flex-shrink-0">
-      <span class="font-body font-medium text-lg text-ink">{priceDisplay}</span>
+      <span class="font-body font-medium text-body-large text-ink">{priceDisplay}</span>
       {duration && <span class="text-body-small text-muted">{duration}</span>}
     </div>
   </div>
 
   {(description || includes) && (
-    <p class="text-body-small text-muted mt-2">
+    <p class="text-body-small text-muted mt-xs">
       {description || (includes && `Includes: ${includes}`)}
     </p>
   )}

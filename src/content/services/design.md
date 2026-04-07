@@ -1,5 +1,5 @@
 ---
-title: "Design"
+title: "Nail Art Add-Ons"
 price: 10
 priceMax: 20
 category: "additional"

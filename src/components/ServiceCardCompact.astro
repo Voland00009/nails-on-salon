@@ -16,10 +16,10 @@ const priceAndDuration = duration ? `${priceDisplay} · ${duration}` : priceDisp
 <div class="flex flex-col sm:flex-row sm:justify-between py-md">
   <span class="text-ink">
     {title}
-    {includes && <span class="block text-muted text-sm mt-0.5">{includes}</span>}
-    {note && <span class="block text-muted text-sm italic mt-0.5">{note}</span>}
+    {includes && <span class="block text-muted text-body-small mt-0.5">{includes}</span>}
+    {note && <span class="block text-muted text-body-small italic mt-0.5">{note}</span>}
   </span>
-  <span class="font-medium text-ink text-sm sm:text-base flex-shrink-0 mt-1 sm:mt-0">
+  <span class="font-medium text-ink text-body-small sm:text-body-base flex-shrink-0 mt-xs sm:mt-0">
     {priceAndDuration}
   </span>
 </div>
