@@ -22,6 +22,8 @@ const photos = [
       <Image
         src={photo.src}
         alt={photo.alt}
+        widths={[280, 360, 480]}
+        sizes="(min-width: 1024px) 200px, 260px"
         class="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.02]"
         loading="lazy"
       />
