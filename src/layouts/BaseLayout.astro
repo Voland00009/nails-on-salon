@@ -10,6 +10,29 @@ interface Props {
 
 const { title, description, ogImage = '/og-image.jpg' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BeautySalon',
+  '@id': new URL('/#business', Astro.site).toString(),
+  name: 'Nails On Salon',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '3030 Plaza Bonita Rd, Suite 117',
+    addressLocality: 'National City',
+    addressRegion: 'CA',
+    postalCode: '91950',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 32.65713573397495,
+    longitude: -117.06694459638688,
+  },
+  url: Astro.site?.toString(),
+  sameAs: ['https://www.instagram.com/nailsonsalon/'],
+  priceRange: '$$',
+};
 ---
 
 <!DOCTYPE html>
@@ -27,6 +50,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:image" content={new URL(ogImage, Astro.site)} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
