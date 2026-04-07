@@ -5,6 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import InstagramCTA from '../components/InstagramCTA.astro';
 import GalleryStrip from '../components/GalleryStrip.astro';
 import GoogleMap from '../components/GoogleMap.astro';
+import StickyMobileCTA from '../components/StickyMobileCTA.astro';
 import heroImage from '../assets/hero/IMG_3262.JPG';
 import helloImage from '../assets/hero/IMG_3260.JPG';
 import studioImage from '../assets/phenix/IMG_3268.JPG';
@@ -276,6 +277,8 @@ const { Content: HeroText } = await heroContent.render();
 
     </div>
   </section>
+
+  <StickyMobileCTA />
 
   <script>
     const reveals = document.querySelectorAll('.reveal');
