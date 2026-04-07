@@ -40,12 +40,10 @@
     }
   }
 
-  /* Reset link color inheritance — prevents browser :visited from bleeding into card text */
-  a {
-    color: inherit;
-  }
+  /* Reset link color inheritance — prevents browser :visited from bleeding into card text.
+     !important needed: a:visited specificity (0,1,1) beats Tailwind utility classes (0,1,0) */
   a:visited {
-    color: inherit;
+    color: inherit !important;
   }
 
   /* Focus indicators — WCAG requirement */
