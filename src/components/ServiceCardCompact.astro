@@ -5,9 +5,10 @@ interface Props {
   priceMax?: number;
   duration?: string;
   includes?: string;
+  note?: string;
 }
 
-const { title, price, priceMax, duration, includes } = Astro.props;
+const { title, price, priceMax, duration, includes, note } = Astro.props;
 const priceDisplay = priceMax ? `$${price}–${priceMax}` : `$${price}`;
 const priceAndDuration = duration ? `${priceDisplay} · ${duration}` : priceDisplay;
 ---
@@ -15,7 +16,8 @@ const priceAndDuration = duration ? `${priceDisplay} · ${duration}` : priceDisp
 <div class="flex flex-col sm:flex-row sm:justify-between py-md">
   <span class="text-ink">
     {title}
-    {includes && <span class="text-muted text-sm"> ({includes})</span>}
+    {includes && <span class="block text-muted text-sm mt-0.5">{includes}</span>}
+    {note && <span class="block text-muted text-sm italic mt-0.5">{note}</span>}
   </span>
   <span class="font-medium text-ink text-sm sm:text-base flex-shrink-0 mt-1 sm:mt-0">
     {priceAndDuration}

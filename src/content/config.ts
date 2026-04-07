@@ -9,6 +9,7 @@ const services = defineCollection({
     duration: z.string().optional(),
     category: z.enum(['manicure', 'pedicure', 'additional']),
     includes: z.string().optional(),
+    note: z.string().optional(),
     description: z.string().optional(),
     signature: z.boolean().default(false),
     sortOrder: z.number(),
