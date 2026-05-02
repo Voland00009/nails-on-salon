@@ -6,7 +6,12 @@ interface Props {
 const { class: className = '' } = Astro.props;
 
 const address = '3030 Plaza Bonita Rd, Unit 1336, Suite 117, National City, CA 91950';
-const mapsUrl = 'https://maps.google.com/?q=3030+Plaza+Bonita+Rd+National+City+CA+91950';
+// Точные координаты входа в Phenix Salon Suites со стороны парковки.
+// Текстовый поиск по адресу даёт pin в центре Westfield Plaza Bonita —
+// это огромный mall, и Google ставит метку не туда. Координаты — same source
+// что в schema.org BaseLayout (LocalBusiness.geo).
+const mapsUrl =
+  'https://www.google.com/maps/search/?api=1&query=32.65713573397495%2C-117.06694459638688';
 ---
 
 <div class:list={['rounded-lg bg-bg-tint p-lg sm:p-xl text-center flex flex-col justify-center items-center gap-md', className]}>
