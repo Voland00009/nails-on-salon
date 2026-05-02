@@ -60,9 +60,6 @@ export default {
         'brand-sm': '0 2px 6px rgba(28,16,24,0.08)',
         'brand-lg': '0 4px 12px rgba(28,16,24,0.1)',
       },
-      borderWidth: {
-        'l-2': '0 0 0 2px',
-      },
       scale: {
         103: '1.03',
       },

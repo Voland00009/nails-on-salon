@@ -1,6 +1,8 @@
 ---
+import type { ImageMetadata } from 'astro:assets';
+
 interface ImageItem {
-  src: any;
+  src: ImageMetadata;
   alt: string;
 }
 
@@ -295,10 +297,10 @@ const { images } = Astro.props;
       // Keyboard navigation (using bound reference for cleanup)
       document.addEventListener('keydown', this.handleKeyboardBound);
 
-      // Touch/swipe events
-      this.imageEl.addEventListener('touchstart', this.handleTouchStartBound);
-      this.imageEl.addEventListener('touchmove', this.handleTouchMoveBound);
-      this.imageEl.addEventListener('touchend', this.handleTouchEndBound);
+      // Touch/swipe events — touchmove is non-passive so we can preventDefault on horizontal swipes
+      this.imageEl.addEventListener('touchstart', this.handleTouchStartBound, { passive: true });
+      this.imageEl.addEventListener('touchmove', this.handleTouchMoveBound, { passive: false });
+      this.imageEl.addEventListener('touchend', this.handleTouchEndBound, { passive: true });
 
       // Focus trap
       this.dialog.addEventListener('keydown', this.handleFocusTrapBound);

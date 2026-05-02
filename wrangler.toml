@@ -1,10 +1,3 @@
 name = "nails-on-salon"
-type = "javascript"
-account_id = ""
-workers_dev = true
-route = ""
-zone_id = ""
-
-[env.production]
-name = "nails-on-salon-prod"
-vars = { ENVIRONMENT = "production" }
+pages_build_output_dir = "dist"
+compatibility_date = "2026-01-01"

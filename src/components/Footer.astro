@@ -7,6 +7,8 @@ const quickLinks = [
   { href: '/gallery', label: 'Gallery' },
   { href: '/book', label: 'Book an Appointment' },
 ];
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-ink text-white/70 font-body text-sm">
@@ -75,7 +77,7 @@ const quickLinks = [
 
     <!-- Divider + Copyright -->
     <div class="border-t border-white/10 mt-2xl pt-lg flex flex-col sm:flex-row justify-between items-center gap-sm text-body-small text-white/50">
-      <span>&copy; 2026 Nails On Salon</span>
+      <span>&copy; {currentYear} Nails On Salon</span>
       <span>CA License: M 368744</span>
     </div>
   </div>

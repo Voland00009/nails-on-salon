@@ -5,10 +5,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import InstagramCTA from '../components/InstagramCTA.astro';
 import GalleryStrip from '../components/GalleryStrip.astro';
 import GoogleMap from '../components/GoogleMap.astro';
-import StickyMobileCTA from '../components/StickyMobileCTA.astro';
 import heroImage from '../assets/hero/IMG_3262.JPG';
 import helloImage from '../assets/hero/IMG_3260.JPG';
-import studioImage from '../assets/phenix/IMG_3268.JPG';
+import wayfindingEntrance from '../assets/phenix/IMG_3268.JPG';
 import wayfindingDoor from '../assets/hero/IMG_3263.JPG';
 import wayfindingHall from '../assets/phenix/IMG_3266.JPG';
 
@@ -53,7 +52,7 @@ const { Content: HeroText } = await heroContent.render();
             <HeroText />
           </div>
 
-          <div id="hero-cta-wrapper" class="mt-xl animate-hero-text" style="animation-delay: 0.2s">
+          <div class="mt-xl animate-hero-text" style="animation-delay: 0.2s">
             <InstagramCTA variant="primary" />
           </div>
         </div>
@@ -172,7 +171,7 @@ const { Content: HeroText } = await heroContent.render();
             Hello Gorgeous
           </h2>
           <p class="text-ink text-body-small leading-relaxed mt-md max-w-[460px]">
-            One client at a time. Each appointment runs about two hours. No one waiting in the next chair, no pressure to rush the last coat.
+            One client at a time. Unhurried, with no one waiting in the next chair and no pressure to rush the last coat.
           </p>
         </div>
 
@@ -213,7 +212,7 @@ const { Content: HeroText } = await heroContent.render();
           <div>
             <div class="aspect-[3/4] rounded-lg overflow-hidden">
               <Image
-                src={studioImage}
+                src={wayfindingEntrance}
                 alt="Phenix Salon Suites entrance at Westfield Plaza Bonita"
                 widths={[380, 600, 760]}
                 sizes="(min-width: 1024px) 380px, 100vw"
@@ -277,8 +276,6 @@ const { Content: HeroText } = await heroContent.render();
 
     </div>
   </section>
-
-  <StickyMobileCTA />
 
   <script>
     const reveals = document.querySelectorAll('.reveal');

@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import StickyMobileCTA from '../components/StickyMobileCTA.astro';
 
 interface Props {
   title: string;
@@ -19,7 +20,7 @@ const localBusinessSchema = {
   name: 'Nails On Salon',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '3030 Plaza Bonita Rd, Suite 117',
+    streetAddress: '3030 Plaza Bonita Rd, Unit 1336, Suite 117',
     addressLocality: 'National City',
     addressRegion: 'CA',
     postalCode: '91950',
@@ -31,7 +32,7 @@ const localBusinessSchema = {
     longitude: -117.06694459638688,
   },
   url: Astro.site?.toString(),
-  sameAs: ['https://www.instagram.com/nailsonsalon/'],
+  sameAs: ['https://www.instagram.com/nailsonsalon'],
   priceRange: '$$',
 };
 ---
@@ -86,6 +87,8 @@ const localBusinessSchema = {
     </main>
 
     <Footer />
+
+    <StickyMobileCTA />
   </body>
 </html>
 
