@@ -1,0 +1,24 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+
+const address = '3030 Plaza Bonita Rd, Unit 1336, Suite 117, National City, CA 91950';
+const mapsUrl = 'https://maps.google.com/?q=3030+Plaza+Bonita+Rd+National+City+CA+91950';
+---
+
+<div class:list={['rounded-lg bg-bg-tint p-lg sm:p-xl text-center flex flex-col justify-center items-center gap-md', className]}>
+  <p class="font-medium text-ink text-body-base leading-relaxed">{address}</p>
+  <a
+    href={mapsUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex items-center gap-2 text-ink underline decoration-brand decoration-2 underline-offset-4 hover:text-muted transition-colors py-2 min-h-[44px]"
+    aria-label="Open location in Google Maps (opens in new tab)"
+  >
+    View on Google Maps
+    <span aria-hidden="true">→</span>
+  </a>
+</div>

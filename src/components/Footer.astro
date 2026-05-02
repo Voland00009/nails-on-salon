@@ -75,10 +75,19 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
 
+    <!-- Legal Nav -->
+    <nav aria-label="Legal" class="border-t border-white/10 mt-2xl pt-lg">
+      <ul role="list" class="flex flex-wrap justify-center sm:justify-start gap-md text-white/70 text-body-small">
+        <li><a href="/accessibility" class="inline-block py-1 hover:text-white transition-colors duration-200">Accessibility</a></li>
+        <li><a href="/privacy" class="inline-block py-1 hover:text-white transition-colors duration-200">Privacy Policy</a></li>
+        <li><a href="/terms" class="inline-block py-1 hover:text-white transition-colors duration-200">Terms of Service</a></li>
+      </ul>
+    </nav>
+
     <!-- Divider + Copyright -->
-    <div class="border-t border-white/10 mt-2xl pt-lg flex flex-col sm:flex-row justify-between items-center gap-sm text-body-small text-white/50">
-      <span>&copy; {currentYear} Nails On Salon</span>
-      <span>CA License: M 368744</span>
+    <div class="mt-lg pt-md flex flex-col sm:flex-row justify-between items-center gap-sm text-body-small">
+      <span class="text-white/50">&copy; {currentYear} Nails On Salon</span>
+      <span class="text-white text-xs">CA Cosmetology License M 368744</span>
     </div>
   </div>
 </footer>

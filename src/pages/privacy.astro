@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const effectiveDate = '2026-05-02';
+const email = 'nailsonsalon@gmail.com';
+---
+
+<BaseLayout
+  title="Privacy Policy — Nails On Salon"
+  description="Privacy Policy for nailsonsalon.com — what we do not collect, third-party services that may process your data, and your California privacy rights."
+>
+  <!-- HERO -->
+  <section class="bg-bg-tint py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <h1 class="font-display font-light text-display-mobile sm:text-display-desktop text-ink">
+        Privacy Policy
+      </h1>
+      <p class="text-body-large text-muted mt-md max-w-2xl">
+        This website does not use cookies, contact forms, or analytics. Here is what that means in practice.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="bg-white py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <article class="max-w-2xl space-y-xl text-body-base text-ink leading-relaxed">
+
+        <div>
+          <h2 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            1. Who We Are
+          </h2>
+          <p>
+            Nails On Salon is operated by Tetiana Yaresko, a sole proprietor located at
+            3030 Plaza Bonita Rd, Unit 1336, Suite 117, National City, CA 91950.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            2. Information We Do Not Collect
+          </h2>
+          <p>
+            This website does not use cookies. It does not collect, store, or process any personal
+            information directly. There are no contact forms or analytics on this website.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            3. Third-Party Services That May Process Your Data
+          </h2>
+          <ul class="list-disc pl-6 space-y-md">
+            <li>
+              <strong>Cloudflare Pages</strong> (hosting): our hosting provider may log standard server
+              access data including IP addresses. See
+              <a
+                href="https://www.cloudflare.com/privacypolicy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-ink underline decoration-brand decoration-2 underline-offset-4 hover:text-muted"
+                aria-label="Cloudflare Privacy Policy (opens in new tab)"
+              >Cloudflare's Privacy Policy</a>.
+            </li>
+            <li>
+              <strong>Instagram</strong>: clicking our Instagram link takes you to Instagram
+              (Meta Platforms). Meta's data practices are governed by their
+              <a
+                href="https://privacycenter.instagram.com/policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-ink underline decoration-brand decoration-2 underline-offset-4 hover:text-muted"
+                aria-label="Instagram Privacy Policy (opens in new tab)"
+              >Privacy Policy</a>.
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            4. Instagram Booking
+          </h2>
+          <p>
+            Booking is handled via Instagram Direct Message. Any information you share via DM is
+            subject to Instagram's (Meta's) Privacy Policy, not ours.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            5. Your California Privacy Rights
+          </h2>
+          <p>
+            As a California resident, you have rights under the CCPA/CPRA. Because we do not collect
+            personal information through this website, there is no data to access, delete, or opt out of.
+            For privacy questions:
+            <a
+              href={`mailto:${email}`}
+              class="text-ink underline decoration-brand decoration-2 underline-offset-4 hover:text-muted"
+            >{email}</a>.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            6. Changes to This Policy
+          </h2>
+          <p>
+            We may update this Privacy Policy from time to time. The "Effective Date" below indicates
+            when this version was published. Continued use of this website after changes are posted
+            constitutes acceptance of the revised policy.
+          </p>
+        </div>
+
+        <div class="pt-lg border-t border-border">
+          <p class="text-body-small text-muted">
+            Effective Date: <time datetime={effectiveDate}>{effectiveDate}</time>
+          </p>
+        </div>
+
+      </article>
+    </div>
+  </section>
+</BaseLayout>

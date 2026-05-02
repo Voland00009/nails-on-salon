@@ -34,6 +34,12 @@ const localBusinessSchema = {
   url: Astro.site?.toString(),
   sameAs: ['https://www.instagram.com/nailsonsalon'],
   priceRange: '$$',
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    description: 'By appointment only',
+  },
+  accessibilityFeature: ['alternativeText', 'structuralNavigation'],
 };
 ---
 
@@ -60,13 +66,7 @@ const localBusinessSchema = {
     <!-- Schema.org LocalBusiness -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fonts: self-hosted via @fontsource (см. src/styles/global.css) -->
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" />

@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lastUpdated = '2026-05-02';
+const email = 'nailsonsalon@gmail.com';
+---
+
+<BaseLayout
+  title="Accessibility Statement — Nails On Salon"
+  description="How Nails On Salon works toward Web Content Accessibility Guidelines (WCAG) 2.1 Level AA conformance, and how to send accessibility feedback."
+>
+  <!-- HERO -->
+  <section class="bg-bg-tint py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <h1 class="font-display font-light text-display-mobile sm:text-display-desktop text-ink">
+        Accessibility Statement
+      </h1>
+      <p class="text-body-large text-muted mt-md max-w-2xl">
+        We work to make this website usable for people with disabilities and welcome your feedback.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="bg-white py-2xl sm:py-3xl">
+    <div class="px-5 sm:px-10 max-w-container-xl mx-auto">
+      <article class="max-w-2xl space-y-xl text-body-base text-ink leading-relaxed">
+
+        <div>
+          <h2 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            1. Our Commitment
+          </h2>
+          <p>
+            Nails On Salon is committed to ensuring this website is accessible to people with disabilities.
+            We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            2. Measures We Have Taken
+          </h2>
+          <ul class="list-disc pl-6 space-y-sm">
+            <li>Semantic HTML5 landmarks (header, main, footer, nav).</li>
+            <li>Descriptive alt text on all content images.</li>
+            <li>Keyboard navigation: skip-to-content link, visible focus indicators, focus trap in dialogs and the mobile menu.</li>
+            <li><code class="bg-bg-tint px-1 rounded text-body-small">prefers-reduced-motion</code> respected for all animations.</li>
+            <li>ARIA labels on interactive elements.</li>
+            <li>Color contrast meeting WCAG 1.4.3 AA.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            3. Areas We Are Working On
+          </h2>
+          <ul class="list-disc pl-6 space-y-sm">
+            <li>Screen reader testing across NVDA + JAWS combinations is ongoing.</li>
+            <li>VoiceOver iOS scroll behaviour in the photo viewer is under review.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            4. Third-Party Content
+          </h2>
+          <p>
+            This site links to Instagram for booking. Instagram's accessibility is outside our control.
+            If you cannot use Instagram to book an appointment, please contact us by email and we will
+            arrange an alternative.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            5. Feedback and Contact
+          </h2>
+          <p>
+            We welcome feedback on accessibility barriers. Email:
+            <a
+              href={`mailto:${email}`}
+              class="text-ink underline decoration-brand decoration-2 underline-offset-4 hover:text-muted"
+            >{email}</a>.
+            We will acknowledge your message and work to address the issue.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-display font-semibold text-h3-mobile sm:text-h3-desktop text-ink mb-md">
+            6. Formal Complaints
+          </h2>
+          <p>
+            If you are not satisfied with our response, you may contact the
+            <a
+              href="https://www.access-board.gov/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-ink underline decoration-brand decoration-2 underline-offset-4 hover:text-muted"
+              aria-label="U.S. Access Board (opens in new tab)"
+            >U.S. Access Board</a>
+            or file a complaint under the Americans with Disabilities Act.
+          </p>
+        </div>
+
+        <div class="pt-lg border-t border-border">
+          <p class="text-body-small text-muted">
+            Date of Statement: <time datetime={lastUpdated}>{lastUpdated}</time>
+          </p>
+        </div>
+
+      </article>
+    </div>
+  </section>
+</BaseLayout>

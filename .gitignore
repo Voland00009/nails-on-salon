@@ -9,3 +9,6 @@ dist/
 # Playwright/Claude debug artifacts
 .playwright-mcp/
 hello-gorgeous-mobile.png
+
+# Captain System local artifacts (not project source)
+.captain/

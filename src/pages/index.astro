@@ -4,7 +4,7 @@ import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import InstagramCTA from '../components/InstagramCTA.astro';
 import GalleryStrip from '../components/GalleryStrip.astro';
-import GoogleMap from '../components/GoogleMap.astro';
+import StaticMap from '../components/StaticMap.astro';
 import heroImage from '../assets/hero/IMG_3262.JPG';
 import helloImage from '../assets/hero/IMG_3260.JPG';
 import wayfindingEntrance from '../assets/phenix/IMG_3268.JPG';
@@ -254,11 +254,9 @@ const { Content: HeroText } = await heroContent.render();
         </div>
       </div>
 
-      <!-- Map + Address -->
+      <!-- Address + CTA (Maps replaced with static block — see docs/compliance audit B.2) -->
       <div class="reveal grid grid-cols-1 lg:grid-cols-2 gap-lg">
-        <div class="h-[280px] lg:h-[360px] rounded-lg overflow-hidden border border-border">
-          <GoogleMap />
-        </div>
+        <StaticMap class="h-full min-h-[200px] lg:min-h-[280px]" />
         <div class="flex flex-col justify-center items-center lg:items-start gap-md">
           <div class="flex items-start gap-2 text-body-small justify-center lg:justify-start">
             <svg class="flex-shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
